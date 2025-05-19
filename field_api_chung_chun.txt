@@ -1,0 +1,124 @@
+C場地 8點
+https://wd.xuanen.com.tw/wd08.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D=2024/12/03&QPid=1181&QTime=8
+
+
+C場地 9點
+https://wd.xuanen.com.tw/wd08.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D=2024/12/03&QPid=1181&QTime=9
+
+
+
+// 00:00:00的 now.getDate 要 +1
+// 增加 delay-{X} 進行偷跑ms
+// 場地pid [A:1179, B:1180, C: 1181, D: 1182, E: 1184]
+// 記得調整日期{D}, 時間{QTime}
+// 非00:00:00 的搶場要去掉+1  now.getDate()+1, 
+
+const arrayMapFieldNumber =  {
+    A:1179, 
+    B:1180, 
+    C:1181, 
+    D:1182, 
+    E:1184
+}
+
+const targetDate = "2025/05/17"
+const targetField = "A"
+const targetTime = "8"
+
+
+function openURLAtSpecificTime(url, hour, minute, second) {
+    const now = new Date();
+    const targetTime = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()+1,
+        hour,
+        minute,
+        second
+    );
+
+    let delay = targetTime - now;
+
+    console.log(delay)
+    // 20成功,380偷跑太多反而失敗
+    // 9點雙tab 20, 280
+    delay = delay - 20
+
+    if (delay > 0) {
+        setTimeout(function () {
+            window.location.href = url;
+        }, delay);
+    }
+}
+
+// Define the URL and the target time (00:00:00)
+const urlToOpen = 'https://wd.xuanen.com.tw/wd08.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D='+ targetDate +'&QPid='+ arrayMapFieldNumber[targetField] +'&QTime='+ targetTime;
+
+console.log('???',urlToOpen)
+
+const targetHour = 00;
+const targetMinute = 00;
+const targetSecond = 00;
+
+// Call the function to open the URL at the specified time
+openURLAtSpecificTime(urlToOpen, targetHour, targetMinute, targetSecond);
+
+
+
+
+
+{
+    "jhong": {
+            "user_name": "M122475762",
+            "pass": "monkey10200829",
+            "e_mail": "cjyy2016@gmail.com",
+            "e_auth": "vhfsxbixvrnaoulf",
+            "card": "4147,6337,3795,9902,08,26,554,JHONG YONG CHEN,0988611482",
+            "captcha_key": "d661136619ecacf2b965cf014f51810f"
+        },
+    "simen":
+        {
+            "user_name": "L124813321",
+            "pass": "ad25395160",
+            "e_mail": "cjyy2016@gmail.com",
+            "e_auth": "vhfsxbixvrnaoulf",
+            "card": "4147,6337,3795,9902,08,26,554,JHONG YONG CHEN,0988611482",
+            "captcha_key": "d661136619ecacf2b965cf014f51810f"
+        },
+    "mia":
+        {
+            "user_name": "P223692654",
+            "pass": "pig215627",
+            "e_mail": "cjyy2016@gmail.com",
+            "e_auth": "vhfsxbixvrnaoulf",
+            "card": "4147,6337,3795,9902,08,26,554,JHONG YONG CHEN,0988611482",
+            "captcha_key": "d661136619ecacf2b965cf014f51810f"
+        },
+    "kevin":
+        {
+            "user_name": "k122885829",
+            "pass": "dog32456",
+            "e_mail": "cjyy2016@gmail.com",
+            "e_auth": "vhfsxbixvrnaoulf",
+            "card": "4147,6337,3795,9902,08,26,554,JHONG YONG CHEN,0988611482",
+            "captcha_key": "d661136619ecacf2b965cf014f51810f"
+        },
+    "doozi":
+        {
+            "user_name": "L222816148",
+            "pass": "ad25395160",
+            "e_mail": "cjyy2016@gmail.com",
+            "e_auth": "vhfsxbixvrnaoulf",
+            "card": "4147,6337,3795,9902,08,26,554,JHONG YONG CHEN,0988611482",
+            "captcha_key": "d661136619ecacf2b965cf014f51810f"
+        },
+    "richard":
+        {
+            "user_name": "S123898915",
+            "pass": "richard0808",
+            "e_mail": "cjyy2016@gmail.com",
+            "e_auth": "vhfsxbixvrnaoulf",
+            "card": "4147,6337,3795,9902,08,26,554,JHONG YONG CHEN,0988611482",
+            "captcha_key": "d661136619ecacf2b965cf014f51810f"
+        }
+}

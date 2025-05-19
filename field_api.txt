@@ -1,0 +1,137 @@
+
+B場地 8點
+https://scr.cyc.org.tw/tp11.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D=2024/12/03&QPid=84&QTime=8
+
+B場地 9點
+https://scr.cyc.org.tw/tp11.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D=2024/12/03&QPid=84&QTime=9
+
+
+C場地 8點
+https://scr.cyc.org.tw/tp11.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D=2024/12/03&QPid=1074&QTime=8
+
+C場地 9點
+https://scr.cyc.org.tw/tp11.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D=2024/12/03&QPid=1074&QTime=9
+
+
+D場地 8點
+https://scr.cyc.org.tw/tp11.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D=2024/12/03&QPid=1075&QTime=8
+
+D場地 9點
+https://scr.cyc.org.tw/tp11.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D=2024/12/03&QPid=1075&QTime=9
+
+
+E場地 8點
+https://scr.cyc.org.tw/tp11.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D=2024/12/03&QPid=87&QTime=8
+
+E場地 9點
+https://scr.cyc.org.tw/tp11.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D=2024/12/03&QPid=87&QTime=9
+
+
+F場地 8點
+https://scr.cyc.org.tw/tp11.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D=2024/12/03&QPid=88&QTime=8
+
+
+new:
+https://scr.cyc.org.tw/tp11.aspx?module=net_booking&files=booking_place&StepFlag=25&QPid=2215&QTime=8&PT=1&D=2024/08/03
+
+
+// 00:00:00的 now.getDate 要 +1
+// 增加 delay-{X} 進行偷跑ms, 目前測試極限870
+//場地pid [6:88, 8:2213, 9:2214, 10:2215, 11:2216, 12:2217] 
+// 記得調整日期{D}, 時間{QTime}
+// 鄰近場地 8、9、11、12
+//球場排列
+//[2,5,8,11]
+//[3,6,9,12]
+
+function openURLAtSpecificTime(url, hour, minute, second) {
+    const now = new Date();
+    const targetTime = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()+1,
+        hour,
+        minute,
+        second
+    );
+
+    let delay = targetTime - now;
+
+    console.log(delay)
+    delay = delay - 50
+
+    if (delay > 0) {
+        setTimeout(function () {
+            window.location.href = url;
+        }, delay);
+    }
+}
+
+// Define the URL and the target time (00:00:00)
+const urlToOpen = 'https://scr.cyc.org.tw/tp11.aspx?module=net_booking&files=booking_place&StepFlag=25&QPid=2214&QTime=8&PT=1&D=2025/3/15';
+const targetHour = 00;
+const targetMinute = 00;
+const targetSecond = 00;
+
+// Call the function to open the URL at the specified time
+openURLAtSpecificTime(urlToOpen, targetHour, targetMinute, targetSecond);
+
+
+
+
+
+{
+    "jhong": {
+            "user_name": "M122475762",
+            "pass": "monkey10200829",
+            "e_mail": "cjyy2016@gmail.com",
+            "e_auth": "vhfsxbixvrnaoulf",
+            "card": "4147,6337,3795,9902,08,26,554,JHONG YONG CHEN,0988611482",
+            "captcha_key": "d661136619ecacf2b965cf014f51810f"
+        },
+    "simen":
+        {
+            "user_name": "L124813321",
+            "pass": "ad25395160",
+            "e_mail": "cjyy2016@gmail.com",
+            "e_auth": "vhfsxbixvrnaoulf",
+            "card": "4147,6337,3795,9902,08,26,554,JHONG YONG CHEN,0988611482",
+            "captcha_key": "d661136619ecacf2b965cf014f51810f"
+        },
+    "mia":
+        {
+            "user_name": "P223692654",
+            "pass": "pig215627",
+            "e_mail": "cjyy2016@gmail.com",
+            "e_auth": "vhfsxbixvrnaoulf",
+            "card": "4147,6337,3795,9902,08,26,554,JHONG YONG CHEN,0988611482",
+            "captcha_key": "d661136619ecacf2b965cf014f51810f"
+        },
+    "kevin":
+        {
+            "user_name": "K122885829",
+            "pass": "dog32456",
+            "e_mail": "cjyy2016@gmail.com",
+            "e_auth": "vhfsxbixvrnaoulf",
+            "card": "4147,6337,3795,9902,08,26,554,JHONG YONG CHEN,0988611482",
+            "captcha_key": "d661136619ecacf2b965cf014f51810f"
+        },
+    "doozi":
+        {
+            "user_name": "L222816148",
+            "pass": "ad25395160",
+            "e_mail": "cjyy2016@gmail.com",
+            "e_auth": "vhfsxbixvrnaoulf",
+            "card": "4147,6337,3795,9902,08,26,554,JHONG YONG CHEN,0988611482",
+            "captcha_key": "d661136619ecacf2b965cf014f51810f"
+        },
+    "richard":
+        {
+            "user_name": "S123898915",
+            "pass": "richard0808",
+            "e_mail": "cjyy2016@gmail.com",
+            "e_auth": "vhfsxbixvrnaoulf",
+            "card": "4147,6337,3795,9902,08,26,554,JHONG YONG CHEN,0988611482",
+            "captcha_key": "d661136619ecacf2b965cf014f51810f"
+        }
+}
