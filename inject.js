@@ -76,89 +76,40 @@ async function waitForTargetReady(Target, targetId, maxRetries = 20) {
 }
 
 async function getOrCreateTab(Target, port) {
-    try {
-        // First try to find an existing tab
-        const { targetInfos } = await Target.getTargets();
-        
-        // Look for an existing tab that's not the current one
-        const existingTabs = targetInfos.filter(t => 
-            t.type === 'page' && 
-            t.webSocketDebuggerUrl
-        );
+    // First try to find an existing tab
+    const { targetInfos } = await Target.getTargets();
+    
+    // Look for an existing tab that's not the current one
+    const existingTabs = targetInfos.filter(t => 
+        t.type === 'page' && 
+        t.url !== 'about:blank' && 
+        t.webSocketDebuggerUrl
+    );
 
-        console.log(`Found ${existingTabs.length} existing tabs for port ${port}`);
-
-        if (existingTabs.length > 1) {
-            // Use an existing tab if available
-            console.log(`Found existing tab to use for port ${port}`);
-            return existingTabs[1]; // Use the second tab if available
-        }
-
-        // If no suitable existing tab found, create a new one using CDP directly
-        console.log(`Creating new tab for port ${port} using CDP...`);
-        const newClient = await CDP({ port });
-        
-        // Log all existing targets before creating new tab
-        const { targetInfos: beforeTargets } = await Target.getTargets();
-        console.log('Existing targets before creating new tab:');
-        beforeTargets.forEach(t => console.log(`- ${t.type} (${t.targetId}): ${t.webSocketDebuggerUrl || 'no URL'}`));
-        
-        try {
-            // Create a new tab using main client's Target
-            const { targetId } = await Target.createTarget({ 
-                url: 'about:blank'
-            });
-            console.log(`Created new target with ID: ${targetId}`);
-
-            // Wait for the tab to be ready
-            console.log(`Waiting for new target ${targetId} to be ready...`);
-            let attempts = 0;
-            const maxAttempts = 30;
-            let readyTab = null;
-
-            while (!readyTab && attempts < maxAttempts) {
-                attempts++;
-                console.log(`Attempt ${attempts}/${maxAttempts} to get target info...`);
-                
-                try {
-                    const { targetInfos: allTargets } = await Target.getTargets();
-                    console.log('Current targets:');
-                    allTargets.forEach(t => console.log(`- ${t.type} (${t.targetId}): ${t.webSocketDebuggerUrl || 'no URL'}`));
-                    
-                    const target = allTargets.find(t => t.targetId === targetId);
-                    if (target && target.webSocketDebuggerUrl) {
-                        readyTab = target;
-                        break;
-                    }
-                } catch (err) {
-                    console.log(`Error getting target info: ${err.message}`);
-                }
-                
-                console.log('Target not ready yet, waiting...');
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
-
-            if (!readyTab) {
-                throw new Error(`Target ${targetId} not ready after ${maxAttempts} attempts`);
-            }
-
-            console.log(`Target ${readyTab.targetId} is ready with URL: ${readyTab.webSocketDebuggerUrl}`);
-            await newClient.close();
-            return readyTab;
-        } catch (err) {
-            console.error('Error during tab creation:', err);
-            throw err;
-        } finally {
-            try {
-                await newClient.close();
-            } catch (err) {
-                console.error('Error closing newClient:', err);
-            }
-        }
-    } catch (err) {
-        console.error(`Error in getOrCreateTab for port ${port}:`, err);
-        throw new Error(`Failed to create new tab for port ${port}: ${err.message}`);
+    if (existingTabs.length > 1) {
+        // Use an existing tab if available
+        console.log(`Found existing tab to use for port ${port}`);
+        return existingTabs[1]; // Use the second tab if available
     }
+
+    // If no suitable existing tab found, create a new one using CDP directly
+    console.log(`Creating new tab for port ${port} using CDP...`);
+    const newClient = await CDP({ port });
+    const { targetId } = await newClient.Target.createTarget({ url: 'https://wd.xuanen.com.tw/wd08.aspx?module=login_page&files=login' });
+    await newClient.close();
+
+    // Wait a moment for the tab to be ready
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // Get the updated target info
+    const { targetInfos: updatedTargets } = await Target.getTargets();
+    const newTarget = updatedTargets.find(t => t.targetId === targetId);
+    
+    if (!newTarget || !newTarget.webSocketDebuggerUrl) {
+        throw new Error(`Failed to create new tab for port ${port}`);
+    }
+
+    return newTarget;
 }
 
 async function injectScript(port, isSecondAttempt = false) {
@@ -179,217 +130,193 @@ async function injectScript(port, isSecondAttempt = false) {
 
         // Define the script to be injected
         const script = `
-            (function() {
-                // Store data in sessionStorage to persist across page loads
-                if (!window.sessionStorage.getItem('scriptInitialized_' + ${port})) {
-                    console.log('Initializing script data for port', ${port});
-                    window.sessionStorage.setItem('port', ${port});
-                    window.sessionStorage.setItem('isSecondAttempt', ${isSecondAttempt});
-                    window.sessionStorage.setItem('scriptInitialized_' + ${port}, 'true');
+            const port = ${port};  // 手動嵌入數值
+            const isSecondAttempt = ${isSecondAttempt};  // 是否是第二次嘗試
+            
+            console.log('Script starting for port', port, 'attempt:', isSecondAttempt ? 'second' : 'first');
+            
+            const arrayPortFieldsTimeMap = {
+                9222: [
+                        {field:'A', time: "8"},
+                        {field:'A', time: "9"}
+                    ],
+                9223: [
+                        {field:'B', time: "8"},
+                        {field:'B', time: "9"}
+                    ],
+                9224: [
+                        {field:'C', time: "8"},
+                        {field:'C', time: "9"}
+                    ],
+                9225: [
+                        {field:'D', time: "8"},
+                        {field:'D', time: "9"}
+                    ]
+            };
+
+            const arrayMapFieldNumber = {
+                'A': 1179,
+                'B': 1180,
+                'C': 1181,
+                'D': 1182,
+                'E': 1184
+            };
+
+            //dynamic get 8 days later date
+            const setDate = "";
+            const targetDate = setDate || new Date(new Date().setDate(new Date().getDate() + 8)).toISOString().split('T')[0].replace(/-/g, '/');
+            const targetField = "";
+            const targetTime = "";
+
+            function openURLAtSpecificTime(url, hour, minute, second) {
+                const now = new Date();
+                const targetTime = new Date(
+                    now.getFullYear(),
+                    now.getMonth(),
+                    now.getDate()+1,
+                    hour,
+                    minute,
+                    second
+                );
+
+                let delay = targetTime - now;
+                console.log('Delay:', delay);
+                delay = delay - 250;
+                
+                // Format the target time for display
+                const formattedTime = targetTime.getFullYear() + '/' +
+                    String(targetTime.getMonth() + 1).padStart(2, '0') + '/' +
+                    String(targetTime.getDate()).padStart(2, '0') + ' ' +
+                    String(targetTime.getHours()).padStart(2, '0') + ':' +
+                    String(targetTime.getMinutes()).padStart(2, '0') + ':' +
+                    String(targetTime.getSeconds()).padStart(2, '0') + '.' +
+                    String(targetTime.getMilliseconds()).padStart(3, '0');
+                console.log('Will run at:', formattedTime);
+                console.log('url to open:', url);
+                console.log('Attempt:', isSecondAttempt ? 'Second' : 'First');
+
+                if (delay > 0) {
+                    setTimeout(function () {
+                        window.location.href = url;
+                    }, delay);
                 }
-
-                const port = parseInt(window.sessionStorage.getItem('port')) || ${port};
-                const isSecondAttempt = window.sessionStorage.getItem('isSecondAttempt') === 'true';
+            }
                 
-                console.log('Script starting for port', port, 'attempt:', isSecondAttempt ? 'second' : 'first');
-                
-                // Make these objects available globally
-                window.arrayPortFieldsTimeMap = {
-                    9222: [
-                            {field:'A', time: "8"},
-                            {field:'A', time: "9"}
-                        ],
-                    9223: [
-                            {field:'B', time: "8"},
-                            {field:'B', time: "9"}
-                        ],
-                    9224: [
-                            {field:'C', time: "8"},
-                            {field:'C', time: "9"}
-                        ],
-                    9225: [
-                            {field:'D', time: "8"},
-                            {field:'D', time: "9"}
-                        ]
-                };
 
-                window.arrayMapFieldNumber = {
-                    'A': 1179,
-                    'B': 1180,
-                    'C': 1181,
-                    'D': 1182,
-                    'E': 1184
-                };
+            window.urlToOpen = 'https://wd.xuanen.com.tw/wd08.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D='+ targetDate +'&QPid='+ window.arrayMapFieldNumber[window.arrayPortFieldsTimeMap[port][isSecondAttempt ? 1 : 0]['field']] +'&QTime='+ window.arrayPortFieldsTimeMap[port][isSecondAttempt ? 1 : 0]['time'];
+            const targetHour = 0;
+            const targetMinute = 0;
+            const targetSecond = 0;
 
-                //dynamic get 8 days later date
-                const setDate = "";
-                const targetDate = setDate || new Date(new Date().setDate(new Date().getDate() + 8)).toISOString().split('T')[0].replace(/-/g, '/');
-                
-                // Make urlToOpen available globally
-                window.urlToOpen = 'https://wd.xuanen.com.tw/wd08.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D='+ targetDate +'&QPid='+ window.arrayMapFieldNumber[window.arrayPortFieldsTimeMap[port][isSecondAttempt ? 1 : 0]['field']] +'&QTime='+ window.arrayPortFieldsTimeMap[port][isSecondAttempt ? 1 : 0]['time'];
-                window.targetHour = 0;
-                window.targetMinute = 0;
-                window.targetSecond = 0;
-
-                // Make functions available globally
-                window.openURLAtSpecificTime = function(url, hour, minute, second) {
-                    const now = new Date();
-                    const targetTime = new Date(
-                        now.getFullYear(),
-                        now.getMonth(),
-                        now.getDate()+1,
-                        hour,
-                        minute,
-                        second
-                    );
-
-                    let delay = targetTime - now;
-                    console.log('Delay:', delay);
-                    delay = delay - 250;
-                    
-                    // Format the target time for display
-                    const formattedTime = targetTime.getFullYear() + '/' +
-                        String(targetTime.getMonth() + 1).padStart(2, '0') + '/' +
-                        String(targetTime.getDate()).padStart(2, '0') + ' ' +
-                        String(targetTime.getHours()).padStart(2, '0') + ':' +
-                        String(targetTime.getMinutes()).padStart(2, '0') + ':' +
-                        String(targetTime.getSeconds()).padStart(2, '0') + '.' +
-                        String(targetTime.getMilliseconds()).padStart(3, '0');
-                    console.log('Will run at:', formattedTime);
-                    console.log('url to open:', url);
-                    console.log('Attempt:', isSecondAttempt ? 'Second' : 'First');
-
-                    if (delay > 0) {
-                        setTimeout(function () {
-                            window.location.href = url;
-                        }, delay);
-                    }
-                };
-
-                function closeSweetAlertAutomatically() {
-                    const swalDialog = document.querySelector('.swal2-popup');
-                    if (swalDialog && swalDialog.style.display !== 'none') {
-                        const confirmButton = swalDialog.querySelector('.swal2-confirm');
-                        if (confirmButton) {
-                            confirmButton.click();
-                        } else {
-                            const closeButton = swalDialog.querySelector('.swal2-close');
-                            if (closeButton) {
-                                closeButton.click();
-                            }
-                        }
-                    }
-                }
-
-                function clickLoginButton() {
-                    console.log('Attempting to click login button...');
-                    
-                    // Check if we're already logged in by looking for lab_Name
-                    const nameLabel = document.querySelector('#lab_Name');
-                    if (nameLabel && nameLabel.textContent && nameLabel.textContent.trim() !== '') {
-                        console.log('Already logged in, clicking home button...');
-                        const homeButton = document.querySelector('a[onclick*="fun_A"][onclick*="module=ind"]');
-                        if (homeButton) {
-                            homeButton.click();
-                        } else {
-                            console.log('Home button not found, using direct URL...');
-                            window.location.href = 'https://wd.xuanen.com.tw/wd08.aspx?Module=ind&files=ind';
-                        }
-                        return true;
-                    }
-
-                    const loginButton = document.querySelector('#login_but');
-                    if (loginButton) {
-                        console.log('Login button found, clicking...');
-                        try {
-                            loginButton.click();
-                            console.log('Login button clicked successfully');
-                            // Wait a bit and check if login was successful
-                            setTimeout(() => {
-                                const nameLabel = document.querySelector('#lab_Name');
-                                if (nameLabel && nameLabel.textContent && nameLabel.textContent.trim() !== '') {
-                                    console.log('Login successful, clicking home button...');
-                                    const homeButton = document.querySelector('a[onclick*="fun_A"][onclick*="module=ind"]');
-                                    if (homeButton) {
-                                        homeButton.click();
-                                    } else {
-                                        console.log('Home button not found, using direct URL...');
-                                        window.location.href = 'https://wd.xuanen.com.tw/wd08.aspx?Module=ind&files=ind';
-                                    }
-                                }
-                            }, 2000);
-                        } catch (error) {
-                            console.error('Error clicking login button:', error);
-                        }
+            function closeSweetAlertAutomatically() {
+                const swalDialog = document.querySelector('.swal2-popup');
+                if (swalDialog && swalDialog.style.display !== 'none') {
+                    const confirmButton = swalDialog.querySelector('.swal2-confirm');
+                    if (confirmButton) {
+                        confirmButton.click();
                     } else {
-                        console.log('Login button not found in the DOM');
-                    }
-                    return false;
-                }
-
-                // Check if we're on the home page and need to schedule the URL
-                if (window.location.href.includes('module=ind') || window.location.href.includes('Module=ind')) {
-                    console.log('On home page, scheduling URL...');
-                    window.openURLAtSpecificTime(window.urlToOpen, window.targetHour, window.targetMinute, window.targetSecond);
-                } else {
-                    // We're on the login page
-                    setTimeout(function() {
-                        console.log('Attempting to close SweetAlert...');
-                        closeSweetAlertAutomatically();
-                    }, 10000);
-
-                    let count = 0;
-                    const intervalId = setInterval(function() {
-                        console.log('Attempt ' + (count + 1) + ' of 10');
-                        const isLoggedIn = clickLoginButton();
-                        if (isLoggedIn) {
-                            console.log('Login successful, stopping interval');
-                            clearInterval(intervalId);
-                        } else {
-                            count++;
-                            if (count >= 10) {
-                                console.log('Reached maximum attempts, stopping interval');
-                                clearInterval(intervalId);
-                            }
+                        const closeButton = swalDialog.querySelector('.swal2-close');
+                        if (closeButton) {
+                            closeButton.click();
                         }
-                    }, 10000);
+                    }
                 }
-            })();
-        `;
+            }
 
-        // Set up navigation event listeners
-        const setupNavigationListener = async (Page, Runtime, isSecondTab = false) => {
-            Page.frameNavigated(async (params) => {
-                const url = params.frame.url;
-                console.log(`Navigation detected ${isSecondTab ? 'in second tab' : ''} for port ${port} to: ${url}`);
+            function clickLoginButton() {
+                console.log('Attempting to click login button...');
                 
-                // Wait for page load
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                
-                // Re-inject the script after navigation
-                await Runtime.evaluate({ expression: script });
-                console.log(`Script re-injected ${isSecondTab ? 'in second tab' : ''} for port ${port}`);
-            });
-        };
+                // Check if we're already logged in by looking for lab_Name
+                const nameLabel = document.querySelector('#lab_Name');
+                if (nameLabel && nameLabel.textContent && nameLabel.textContent.trim() !== '') {
+                    console.log('Already logged in, clicking home button...');
+                    const homeButton = document.querySelector('a[onclick*="fun_A"][onclick*="module=ind"]');
+                    if (homeButton) {
+                        homeButton.click();
+                    } else {
+                        console.log('Home button not found, using direct URL...');
+                        window.location.href = 'https://wd.xuanen.com.tw/wd08.aspx?Module=ind&files=ind';
+                    }
+                    return true; // Return true to indicate we're logged in
+                }
+
+                const loginButton = document.querySelector('#login_but');
+                if (loginButton) {
+                    console.log('Login button found, clicking...');
+                    try {
+                        loginButton.click();
+                        console.log('Login button clicked successfully');
+                        // Wait a bit and check if login was successful
+                        setTimeout(() => {
+                            const nameLabel = document.querySelector('#lab_Name');
+                            if (nameLabel && nameLabel.textContent && nameLabel.textContent.trim() !== '') {
+                                console.log('Login successful, clicking home button...');
+                                const homeButton = document.querySelector('a[onclick*="fun_A"][onclick*="module=ind"]');
+                                if (homeButton) {
+                                    homeButton.click();
+                                } else {
+                                    console.log('Home button not found, using direct URL...');
+                                    window.location.href = 'https://wd.xuanen.com.tw/wd08.aspx?Module=ind&files=ind';
+                                }
+                            }
+                        }, 2000);
+                    } catch (error) {
+                        console.error('Error clicking login button:', error);
+                    }
+                } else {
+                    console.log('Login button not found in the DOM');
+                }
+                return false; // Return false to indicate we're not logged in yet
+            }
+
+            // Check if we're on the home page and need to schedule the URL
+            if (window.location.href.includes('module=ind') || window.location.href.includes('Module=ind')) {
+                console.log('On home page, scheduling URL...');
+                openURLAtSpecificTime(urlToOpen, targetHour, targetMinute, targetSecond);
+            } else {
+                // We're on the login page
+                setTimeout(function() {
+                    console.log('Attempting to close SweetAlert...');
+                    closeSweetAlertAutomatically();
+                }, 10000);
+
+                let count = 0;
+                const intervalId = setInterval(function() {
+                    console.log('Attempt ' + (count + 1) + ' of 10');
+                    const isLoggedIn = clickLoginButton();
+                    if (isLoggedIn) {
+                        console.log('Login successful, stopping interval');
+                        clearInterval(intervalId);
+                    } else {
+                        count++;
+                        if (count >= 10) {
+                            console.log('Reached maximum attempts, stopping interval');
+                            clearInterval(intervalId);
+                        }
+                    }
+                }, 10000);
+            }
+        `;
 
         if (isSecondAttempt) {
             console.log(`Setting up second tab for port ${port}...`);
             
             try {
+                // Get or create a new tab
                 const target = await getOrCreateTab(Target, port);
                 console.log(`Got target for second tab: ${target.targetId}`);
 
+                // Connect to the new target
                 newClient = await CDP({ target: target });
                 console.log(`Connected to second tab for port ${port}`);
 
                 const { Page: NewPage, Runtime: NewRuntime } = newClient;
 
+                // Enable domains for the new target
                 await NewPage.enable();
                 await NewRuntime.enable();
 
-                // Set up navigation listener for second tab
-                await setupNavigationListener(NewPage, NewRuntime, true);
-
+                // Inject the script
                 console.log(`Injecting script into second tab for port ${port}...`);
                 await NewRuntime.evaluate({ expression: script });
                 console.log(`Script injected into second tab for port ${port}`);
@@ -399,13 +326,11 @@ async function injectScript(port, isSecondAttempt = false) {
                 throw err;
             }
         } else {
+            // First attempt - use the main target
             console.log(`Navigating to login page for main target on port ${port}...`);
             await Page.navigate({ url: 'https://wd.xuanen.com.tw/wd08.aspx?module=login_page&files=login' });
             await Page.loadEventFired();
             console.log(`Navigation complete for main target on port ${port}`);
-
-            // Set up navigation listener for main tab
-            await setupNavigationListener(Page, Runtime);
 
             console.log(`Injecting script for main target on port ${port}...`);
             await Runtime.evaluate({ expression: script });
