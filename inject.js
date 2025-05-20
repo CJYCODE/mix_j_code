@@ -18,6 +18,8 @@
  */
 
 const CDP = require('chrome-remote-interface');
+const puppeteer = require('puppeteer');
+const http = require('http');
 
 // This array will store the different ports for each browser instance
 const ports = [9222, 9223, 9224];
@@ -77,7 +79,10 @@ async function waitForTargetReady(Target, targetId, maxRetries = 20) {
 
 async function getOrCreateTab(Target, port) {
     // First try to find an existing tab
+
+    console.log('88888???:');
     const { targetInfos } = await Target.getTargets();
+    console.log('99999???:', targetInfos);
     
     // Look for an existing tab that's not the current one
     const existingTabs = targetInfos.filter(t => 
@@ -95,26 +100,81 @@ async function getOrCreateTab(Target, port) {
     // If no suitable existing tab found, create a new one using CDP directly
     console.log(`Creating new tab for port ${port} using CDP...`);
     const newClient = await CDP({ port });
-    const { targetId } = await newClient.Target.createTarget({ url: 'https://wd.xuanen.com.tw/wd08.aspx?module=login_page&files=login' });
-    await newClient.close();
-
-    // Wait a moment for the tab to be ready
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    // Get the updated target info
-    const { targetInfos: updatedTargets } = await Target.getTargets();
-    const newTarget = updatedTargets.find(t => t.targetId === targetId);
+    const { targetId } = await newClient.Target.createTarget({ url: 'https://wd.xuanen.com.tw/wd08.aspx?module=ind&files=ind' });
     
-    if (!newTarget || !newTarget.webSocketDebuggerUrl) {
-        throw new Error(`Failed to create new tab for port ${port}`);
+    // Wait for the target to become "ready" (i.e., webSocketDebuggerUrl is available)
+    let targetInfo;
+    for (let i = 0; i < 100; i++) {
+        const targets = await newClient.Target.getTargets();
+        targetInfo = targets.targetInfos.find(t => t.targetId === targetId && t.webSocketDebuggerUrl);
+        if (targetInfo) break;
+        await new Promise(resolve => setTimeout(resolve, 1000)); // wait 200ms before retrying
     }
 
-    return newTarget;
+    if (!targetInfo || !targetInfo.webSocketDebuggerUrl) {
+        throw new Error('Target did not become ready in time.');
+    }
+    
+    await newClient.close();
+
+    console.log('02222')
+
+    // Wait for the target to be ready with webSocketDebuggerUrl
+    let attempts = 0;
+    const maxAttempts = 20;
+    const waitTime = 10000; // 10 seconds
+
+    while (attempts < maxAttempts) {
+        console.log(`Waiting for target ${targetId} to be ready (attempt ${attempts + 1}/${maxAttempts})...`);
+        await new Promise(resolve => setTimeout(resolve, waitTime));
+
+        const { targetInfos: updatedTargets } = await Target.getTargets();
+
+
+        updatedTargets.forEach(t => {
+            console.log(`Target ${t.targetId}`, t.webSocketDebuggerUrl ? '✅ Ready' : '❌ Not ready');
+        });
+
+
+        const newTarget = updatedTargets.find(t => t.targetId === targetId);
+        console.log('04444', newTarget);
+
+        if (newTarget && newTarget.webSocketDebuggerUrl) {
+            console.log(`Target ${targetId} is ready with webSocketDebuggerUrl`);
+            return newTarget;
+        }
+
+        attempts++;
+    }
+
+    throw new Error(`Failed to create new tab for port ${port} after ${maxAttempts} attempts with ${waitTime/1000} second intervals`);
+}
+
+async function getWebSocketUrl(port) {
+    return new Promise((resolve, reject) => {
+        http.get(`http://localhost:${port}/json/version`, (res) => {
+            let data = '';
+            res.on('data', (chunk) => {
+                data += chunk;
+            });
+            res.on('end', () => {
+                try {
+                    const response = JSON.parse(data);
+                    resolve(response.webSocketDebuggerUrl);
+                } catch (err) {
+                    reject(err);
+                }
+            });
+        }).on('error', (err) => {
+            reject(err);
+        });
+    });
 }
 
 async function injectScript(port, isSecondAttempt = false) {
     let client = null;
     let newClient = null;
+    let browser = null;
     
     try {
         console.log(`Connecting to Chrome on port ${port}...`);
@@ -133,7 +193,7 @@ async function injectScript(port, isSecondAttempt = false) {
             const port = ${port};  // 手動嵌入數值
             const isSecondAttempt = ${isSecondAttempt};  // 是否是第二次嘗試
             
-            console.log('Script starting for port', port, 'attempt:', isSecondAttempt ? 'second' : 'first');
+            console.log('11111???', port, 'attempt:', isSecondAttempt ? 'second' : 'first');
             
             const arrayPortFieldsTimeMap = {
                 9222: [
@@ -168,6 +228,8 @@ async function injectScript(port, isSecondAttempt = false) {
             const targetField = "";
             const targetTime = "";
 
+            console.log('22222???:', targetDate);
+
             function openURLAtSpecificTime(url, hour, minute, second) {
                 const now = new Date();
                 const targetTime = new Date(
@@ -201,12 +263,16 @@ async function injectScript(port, isSecondAttempt = false) {
                     }, delay);
                 }
             }
+
+            console.log('33333???:', arrayMapFieldNumber);
                 
 
-            window.urlToOpen = 'https://wd.xuanen.com.tw/wd08.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D='+ targetDate +'&QPid='+ window.arrayMapFieldNumber[window.arrayPortFieldsTimeMap[port][isSecondAttempt ? 1 : 0]['field']] +'&QTime='+ window.arrayPortFieldsTimeMap[port][isSecondAttempt ? 1 : 0]['time'];
+            urlToOpen = 'https://wd.xuanen.com.tw/wd08.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D='+ targetDate +'&QPid='+ arrayMapFieldNumber[arrayPortFieldsTimeMap[port][isSecondAttempt ? 1 : 0]['field']] +'&QTime='+ arrayPortFieldsTimeMap[port][isSecondAttempt ? 1 : 0]['time'];
             const targetHour = 0;
             const targetMinute = 0;
             const targetSecond = 0;
+
+            console.log('44444???:', urlToOpen);
 
             function closeSweetAlertAutomatically() {
                 const swalDialog = document.querySelector('.swal2-popup');
@@ -256,7 +322,7 @@ async function injectScript(port, isSecondAttempt = false) {
                                     homeButton.click();
                                 } else {
                                     console.log('Home button not found, using direct URL...');
-                                    window.location.href = 'https://wd.xuanen.com.tw/wd08.aspx?Module=ind&files=ind';
+                                    // window.location.href = 'https://wd.xuanen.com.tw/wd08.aspx?Module=ind&files=ind';
                                 }
                             }
                         }, 2000);
@@ -269,9 +335,15 @@ async function injectScript(port, isSecondAttempt = false) {
                 return false; // Return false to indicate we're not logged in yet
             }
 
+            console.log('55555???:');
+
+            console.log('66666???:', window.location.href);
+
             // Check if we're on the home page and need to schedule the URL
-            if (window.location.href.includes('module=ind') || window.location.href.includes('Module=ind')) {
-                console.log('On home page, scheduling URL...');
+            const nameLabel = document.querySelector('#lab_Name');
+            let statusLogin = nameLabel && nameLabel.textContent && nameLabel.textContent.trim() !== ''
+            if (statusLogin) {
+                console.log('???7777 On home page with user name, scheduling URL...');
                 openURLAtSpecificTime(urlToOpen, targetHour, targetMinute, targetSecond);
             } else {
                 // We're on the login page
@@ -299,30 +371,36 @@ async function injectScript(port, isSecondAttempt = false) {
         `;
 
         if (isSecondAttempt) {
-            console.log(`Setting up second tab for port ${port}...`);
+            console.log(`Setting up second tab for port ${port} using Puppeteer...`);
             
             try {
-                // Get or create a new tab
-                const target = await getOrCreateTab(Target, port);
-                console.log(`Got target for second tab: ${target.targetId}`);
+                // Get the WebSocket URL from Chrome
+                const webSocketUrl = await getWebSocketUrl(port);
+                console.log(`Got WebSocket URL: ${webSocketUrl}`);
 
-                // Connect to the new target
-                newClient = await CDP({ target: target });
-                console.log(`Connected to second tab for port ${port}`);
+                // Connect to existing Chrome instance using Puppeteer
+                browser = await puppeteer.connect({
+                    browserWSEndpoint: webSocketUrl,
+                    defaultViewport: null
+                });
 
-                const { Page: NewPage, Runtime: NewRuntime } = newClient;
+                // Create a new page
+                const page = await browser.newPage();
+                console.log(`Created new page with Puppeteer for port ${port}`);
 
-                // Enable domains for the new target
-                await NewPage.enable();
-                await NewRuntime.enable();
+                // Navigate to the target URL
+                await page.goto('https://wd.xuanen.com.tw/wd08.aspx?module=login_page&files=login', {
+                    waitUntil: 'networkidle0',
+                    timeout: 30000
+                });
+                console.log(`Navigated to target URL for port ${port}`);
 
                 // Inject the script
-                console.log(`Injecting script into second tab for port ${port}...`);
-                await NewRuntime.evaluate({ expression: script });
+                await page.evaluate(script);
                 console.log(`Script injected into second tab for port ${port}`);
 
             } catch (err) {
-                console.error(`Error setting up second tab for port ${port}:`, err);
+                console.error(`Error setting up second tab with Puppeteer for port ${port}:`, err);
                 throw err;
             }
         } else {
@@ -342,6 +420,14 @@ async function injectScript(port, isSecondAttempt = false) {
         console.error(`Error injecting script on port ${port}:`, err);
         throw err;
     } finally {
+        if (browser) {
+            try {
+                await browser.disconnect();
+                console.log(`Disconnected Puppeteer browser for port ${port}`);
+            } catch (err) {
+                console.log(`Error disconnecting Puppeteer browser for port ${port}:`, err.message);
+            }
+        }
         if (newClient) {
             try {
                 await newClient.close();
@@ -372,8 +458,8 @@ async function main() {
             await injectScript(port, false);
             
             // Wait between attempts
-            console.log(`Waiting 5 seconds before second attempt for port ${port}...`);
-            await new Promise(resolve => setTimeout(resolve, 5000));
+            console.log(`Waiting 10 seconds before second attempt for port ${port}...`);
+            await new Promise(resolve => setTimeout(resolve, 10000));
             
             // Second attempt
             console.log(`Starting second attempt for port ${port}...`);
