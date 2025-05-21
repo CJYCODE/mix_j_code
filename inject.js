@@ -197,24 +197,32 @@ async function injectScript(port, attemptNumber = 0) {
             
             const arrayPortFieldsTimeMap = {
                 9222: [
-                        {field:'A', time: "8"},
-                        {field:'A', time: "9"},
-                        {field:'A', time: "8"}
+                        {field:'A', time: "8", delay: "20"},
+                        {field:'A', time: "8", delay: "20"},
+                        {field:'A', time: "9", delay: "20"},
+                        {field:'A', time: "8", delay: "200"},
+                        {field:'A', time: "9", delay: "200"}
                     ],
                 9223: [
-                        {field:'B', time: "8"},
-                        {field:'B', time: "9"},
-                        {field:'B', time: "8"}
+                        {field:'B', time: "8", delay: "20"},
+                        {field:'B', time: "8", delay: "20"},
+                        {field:'B', time: "9", delay: "20"},
+                        {field:'B', time: "8", delay: "200"},
+                        {field:'B', time: "9", delay: "200"}
                     ],
                 9224: [
-                        {field:'C', time: "8"},
-                        {field:'C', time: "9"},
-                        {field:'C', time: "8"}
+                        {field:'C', time: "8", delay: "20"},
+                        {field:'C', time: "8", delay: "20"},
+                        {field:'C', time: "9", delay: "20"},
+                        {field:'C', time: "8", delay: "200"},
+                        {field:'C', time: "9", delay: "200"}
                     ],
                 9225: [
-                        {field:'D', time: "8"},
-                        {field:'D', time: "9"},
-                        {field:'D', time: "8"}
+                        {field:'D', time: "8", delay: "20"},
+                        {field:'D', time: "8", delay: "20"},
+                        {field:'D', time: "9", delay: "20"},
+                        {field:'D', time: "8", delay: "200"},
+                        {field:'D', time: "9", delay: "200"}
                     ]
             };
 
@@ -247,16 +255,18 @@ async function injectScript(port, attemptNumber = 0) {
 
                 let delay = targetTime - now;
                 console.log('Delay:', delay);
-                delay = delay - 50;
+                delay = delay - arrayPortFieldsTimeMap[port][attemptNumber]['delay'];
+                console.log('ms ahead:', arrayPortFieldsTimeMap[port][attemptNumber]['delay']);
                 
                 // Format the target time for display
-                const formattedTime = targetTime.getFullYear() + '/' +
-                    String(targetTime.getMonth() + 1).padStart(2, '0') + '/' +
-                    String(targetTime.getDate()).padStart(2, '0') + ' ' +
-                    String(targetTime.getHours()).padStart(2, '0') + ':' +
-                    String(targetTime.getMinutes()).padStart(2, '0') + ':' +
-                    String(targetTime.getSeconds()).padStart(2, '0') + '.' +
-                    String(targetTime.getMilliseconds()).padStart(3, '0');
+                const targetTimeAhead = new Date(targetTime.getTime() - arrayPortFieldsTimeMap[port][attemptNumber]['delay']);
+                const formattedTime = targetTimeAhead.getFullYear() + '/' +
+                    String(targetTimeAhead.getMonth() + 1).padStart(2, '0') + '/' +
+                    String(targetTimeAhead.getDate()).padStart(2, '0') + ' ' +
+                    String(targetTimeAhead.getHours()).padStart(2, '0') + ':' +
+                    String(targetTimeAhead.getMinutes()).padStart(2, '0') + ':' +
+                    String(targetTimeAhead.getSeconds()).padStart(2, '0') + '.' +
+                    String(targetTimeAhead.getMilliseconds()).padStart(3, '0');
                 console.log('Will run at:', formattedTime);
                 console.log('url to open:', url);
                 console.log('Attempt:', attemptNumber);
@@ -369,7 +379,7 @@ async function injectScript(port, attemptNumber = 0) {
                             clearInterval(intervalId);
                         }
                     }
-                }, 10000);
+                }, 4500);
             }
         `;
 
@@ -461,20 +471,36 @@ async function main() {
             await injectScript(port, 0);
             
             // Wait between attempts
-            console.log(`Waiting 10 seconds before second attempt for port ${port}...`);
-            await new Promise(resolve => setTimeout(resolve, 10000));
+            console.log(`Waiting 12 seconds before second attempt for port ${port}...`);
+            await new Promise(resolve => setTimeout(resolve, 12000));
             
             // Second attempt
             console.log(`Starting second attempt for port ${port}...`);
             await injectScript(port, 1);
             
             // Wait between attempts
-            console.log(`Waiting 10 seconds before third attempt for port ${port}...`);
-            await new Promise(resolve => setTimeout(resolve, 10000));
+            console.log(`Waiting 1 seconds before third attempt for port ${port}...`);
+            await new Promise(resolve => setTimeout(resolve, 1000));
             
             // Third attempt
             console.log(`Starting third attempt for port ${port}...`);
             await injectScript(port, 2);
+
+            // Wait between attempts
+            console.log(`Waiting 1 seconds before third attempt for port ${port}...`);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Third attempt
+            console.log(`Starting third attempt for port ${port}...`);
+            await injectScript(port, 3);
+
+            // Wait between attempts
+            console.log(`Waiting 1 seconds before third attempt for port ${port}...`);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Third attempt
+            console.log(`Starting third attempt for port ${port}...`);
+            await injectScript(port, 4);
             
             console.log(`\n=== Completed process for port ${port} ===\n`);
 

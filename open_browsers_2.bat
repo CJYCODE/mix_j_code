@@ -18,7 +18,7 @@ start chrome.exe --remote-debugging-port=9224 --user-data-dir="C:\chrome-data\de
 
 
 echo Waiting for Chrome to start...
-timeout /t 5
+timeout /t 2
 
 echo Running the script...
 node inject.js
