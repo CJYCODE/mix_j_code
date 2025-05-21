@@ -171,7 +171,7 @@ async function getWebSocketUrl(port) {
     });
 }
 
-async function injectScript(port, isSecondAttempt = false) {
+async function injectScript(port, attemptNumber = 0) {
     let client = null;
     let newClient = null;
     let browser = null;
@@ -191,26 +191,30 @@ async function injectScript(port, isSecondAttempt = false) {
         // Define the script to be injected
         const script = `
             const port = ${port};  // 手動嵌入數值
-            const isSecondAttempt = ${isSecondAttempt};  // 是否是第二次嘗試
+            const attemptNumber = ${attemptNumber};  // 嘗試次數
             
-            console.log('11111???', port, 'attempt:', isSecondAttempt ? 'second' : 'first');
+            console.log('11111???', port, 'attempt:', attemptNumber);
             
             const arrayPortFieldsTimeMap = {
                 9222: [
                         {field:'A', time: "8"},
-                        {field:'A', time: "9"}
+                        {field:'A', time: "9"},
+                        {field:'A', time: "8"}
                     ],
                 9223: [
                         {field:'B', time: "8"},
-                        {field:'B', time: "9"}
+                        {field:'B', time: "9"},
+                        {field:'B', time: "8"}
                     ],
                 9224: [
                         {field:'C', time: "8"},
-                        {field:'C', time: "9"}
+                        {field:'C', time: "9"},
+                        {field:'C', time: "8"}
                     ],
                 9225: [
                         {field:'D', time: "8"},
-                        {field:'D', time: "9"}
+                        {field:'D', time: "9"},
+                        {field:'D', time: "8"}
                     ]
             };
 
@@ -243,7 +247,7 @@ async function injectScript(port, isSecondAttempt = false) {
 
                 let delay = targetTime - now;
                 console.log('Delay:', delay);
-                delay = delay - 250;
+                delay = delay - 50;
                 
                 // Format the target time for display
                 const formattedTime = targetTime.getFullYear() + '/' +
@@ -255,7 +259,7 @@ async function injectScript(port, isSecondAttempt = false) {
                     String(targetTime.getMilliseconds()).padStart(3, '0');
                 console.log('Will run at:', formattedTime);
                 console.log('url to open:', url);
-                console.log('Attempt:', isSecondAttempt ? 'Second' : 'First');
+                console.log('Attempt:', attemptNumber);
 
                 if (delay > 0) {
                     setTimeout(function () {
@@ -266,8 +270,7 @@ async function injectScript(port, isSecondAttempt = false) {
 
             console.log('33333???:', arrayMapFieldNumber);
                 
-
-            urlToOpen = 'https://wd.xuanen.com.tw/wd08.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D='+ targetDate +'&QPid='+ arrayMapFieldNumber[arrayPortFieldsTimeMap[port][isSecondAttempt ? 1 : 0]['field']] +'&QTime='+ arrayPortFieldsTimeMap[port][isSecondAttempt ? 1 : 0]['time'];
+            urlToOpen = 'https://wd.xuanen.com.tw/wd08.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D='+ targetDate +'&QPid='+ arrayMapFieldNumber[arrayPortFieldsTimeMap[port][attemptNumber]['field']] +'&QTime='+ arrayPortFieldsTimeMap[port][attemptNumber]['time'];
             const targetHour = 0;
             const targetMinute = 0;
             const targetSecond = 0;
@@ -335,7 +338,7 @@ async function injectScript(port, isSecondAttempt = false) {
                 return false; // Return false to indicate we're not logged in yet
             }
 
-            console.log('55555???:');
+            console.log('55555???');
 
             console.log('66666???:', window.location.href);
 
@@ -370,8 +373,8 @@ async function injectScript(port, isSecondAttempt = false) {
             }
         `;
 
-        if (isSecondAttempt) {
-            console.log(`Setting up second tab for port ${port} using Puppeteer...`);
+        if (attemptNumber > 0) {
+            console.log(`Setting up tab ${attemptNumber + 1} for port ${port} using Puppeteer...`);
             
             try {
                 // Get the WebSocket URL from Chrome
@@ -389,18 +392,18 @@ async function injectScript(port, isSecondAttempt = false) {
                 console.log(`Created new page with Puppeteer for port ${port}`);
 
                 // Navigate to the target URL
-                await page.goto('https://wd.xuanen.com.tw/wd08.aspx?module=login_page&files=login', {
+                await page.goto('https://wd.xuanen.com.tw/wd08.aspx?module=ind&files=ind', {
                     waitUntil: 'networkidle0',
-                    timeout: 30000
+                    timeout: 60000
                 });
                 console.log(`Navigated to target URL for port ${port}`);
 
                 // Inject the script
                 await page.evaluate(script);
-                console.log(`Script injected into second tab for port ${port}`);
+                console.log(`Script injected into tab ${attemptNumber + 1} for port ${port}`);
 
             } catch (err) {
-                console.error(`Error setting up second tab with Puppeteer for port ${port}:`, err);
+                console.error(`Error setting up tab ${attemptNumber + 1} with Puppeteer for port ${port}:`, err);
                 throw err;
             }
         } else {
@@ -415,7 +418,7 @@ async function injectScript(port, isSecondAttempt = false) {
             console.log(`Script injected for main target on port ${port}`);
         }
 
-        console.log(`Script injected successfully on port ${port} for ${isSecondAttempt ? 'second' : 'first'} attempt!`);
+        console.log(`Script injected successfully on port ${port} for attempt ${attemptNumber}!`);
     } catch (err) {
         console.error(`Error injecting script on port ${port}:`, err);
         throw err;
@@ -455,7 +458,7 @@ async function main() {
             
             // First attempt
             console.log(`Starting first attempt for port ${port}...`);
-            await injectScript(port, false);
+            await injectScript(port, 0);
             
             // Wait between attempts
             console.log(`Waiting 10 seconds before second attempt for port ${port}...`);
@@ -463,7 +466,15 @@ async function main() {
             
             // Second attempt
             console.log(`Starting second attempt for port ${port}...`);
-            await injectScript(port, true);
+            await injectScript(port, 1);
+            
+            // Wait between attempts
+            console.log(`Waiting 10 seconds before third attempt for port ${port}...`);
+            await new Promise(resolve => setTimeout(resolve, 10000));
+            
+            // Third attempt
+            console.log(`Starting third attempt for port ${port}...`);
+            await injectScript(port, 2);
             
             console.log(`\n=== Completed process for port ${port} ===\n`);
 
