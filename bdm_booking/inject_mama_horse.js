@@ -22,7 +22,7 @@ const puppeteer = require('puppeteer');
 const http = require('http');
 
 // This array will store the different ports for each browser instance
-const ports = [9222, 9223, 9224];
+const ports = [9225, 9226, 9227];
 
 // Keep track of which pages have had the script injected
 const injectedPages = new Set();
@@ -100,7 +100,7 @@ async function getOrCreateTab(Target, port) {
     // If no suitable existing tab found, create a new one using CDP directly
     console.log(`Creating new tab for port ${port} using CDP...`);
     const newClient = await CDP({ port });
-    const { targetId } = await newClient.Target.createTarget({ url: 'https://wd.xuanen.com.tw/wd08.aspx?module=ind&files=ind' });
+    const { targetId } = await newClient.Target.createTarget({ url: 'https://scr.cyc.org.tw/tp11.aspx?Module=ind&files=ind' });
     
     // Wait for the target to become "ready" (i.e., webSocketDebuggerUrl is available)
     let targetInfo;
@@ -196,40 +196,33 @@ async function injectScript(port, attemptNumber = 0) {
             console.log('11111???', port, 'attempt:', attemptNumber);
             
             const arrayPortFieldsTimeMap = {
-                9222: [
+                9225: [
                         {field:'A', time: "8", delay: "20"},
                         {field:'A', time: "8", delay: "20"},
                         {field:'A', time: "9", delay: "20"},
                         {field:'A', time: "8", delay: "200"},
                         {field:'A', time: "9", delay: "200"}
                     ],
-                9223: [
+                9226: [
                         {field:'B', time: "8", delay: "20"},
                         {field:'B', time: "8", delay: "20"},
                         {field:'B', time: "9", delay: "20"},
                         {field:'B', time: "8", delay: "200"},
                         {field:'B', time: "9", delay: "200"}
                     ],
-                9224: [
+                9227: [
                         {field:'C', time: "8", delay: "20"},
                         {field:'C', time: "8", delay: "20"},
                         {field:'C', time: "9", delay: "20"},
                         {field:'C', time: "8", delay: "200"},
                         {field:'C', time: "9", delay: "200"}
-                    ],
-                9225: [
-                        {field:'D', time: "8", delay: "20"},
-                        {field:'D', time: "8", delay: "20"},
-                        {field:'D', time: "9", delay: "20"},
-                        {field:'D', time: "8", delay: "200"},
-                        {field:'D', time: "9", delay: "200"}
                     ]
             };
 
             const arrayMapFieldNumber = {
-                'A': 1179,
-                'B': 1180,
-                'C': 1181,
+                'A': 2217,
+                'B': 2214,
+                'C': 2213,
                 'D': 1182,
                 'E': 1184
             };
@@ -280,7 +273,7 @@ async function injectScript(port, attemptNumber = 0) {
 
             console.log('33333???:', arrayMapFieldNumber);
                 
-            urlToOpen = 'https://wd.xuanen.com.tw/wd08.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D='+ targetDate +'&QPid='+ arrayMapFieldNumber[arrayPortFieldsTimeMap[port][attemptNumber]['field']] +'&QTime='+ arrayPortFieldsTimeMap[port][attemptNumber]['time'];
+            urlToOpen = 'https://scr.cyc.org.tw/tp11.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D='+ targetDate +'&QPid='+ arrayMapFieldNumber[arrayPortFieldsTimeMap[port][attemptNumber]['field']] +'&QTime='+ arrayPortFieldsTimeMap[port][attemptNumber]['time'];
             const targetHour = 0;
             const targetMinute = 0;
             const targetSecond = 0;
@@ -314,7 +307,7 @@ async function injectScript(port, attemptNumber = 0) {
                         homeButton.click();
                     } else {
                         console.log('Home button not found, using direct URL...');
-                        window.location.href = 'https://wd.xuanen.com.tw/wd08.aspx?Module=ind&files=ind';
+                        window.location.href = 'https://scr.cyc.org.tw/tp11.aspx?Module=ind&files=ind';
                     }
                     return true; // Return true to indicate we're logged in
                 }
@@ -326,19 +319,19 @@ async function injectScript(port, attemptNumber = 0) {
                         loginButton.click();
                         console.log('Login button clicked successfully');
                         // Wait a bit and check if login was successful
-                        setTimeout(() => {
-                            const nameLabel = document.querySelector('#lab_Name');
-                            if (nameLabel && nameLabel.textContent && nameLabel.textContent.trim() !== '') {
-                                console.log('Login successful, clicking home button...');
-                                const homeButton = document.querySelector('a[onclick*="fun_A"][onclick*="module=ind"]');
-                                if (homeButton) {
-                                    homeButton.click();
-                                } else {
-                                    console.log('Home button not found, using direct URL...');
-                                    // window.location.href = 'https://wd.xuanen.com.tw/wd08.aspx?Module=ind&files=ind';
-                                }
-                            }
-                        }, 2000);
+                        // setTimeout(() => {
+                        //     const nameLabel = document.querySelector('#lab_Name');
+                        //     if (nameLabel && nameLabel.textContent && nameLabel.textContent.trim() !== '') {
+                        //         console.log('Login successful, clicking home button...');
+                        //         const homeButton = document.querySelector('a[onclick*="fun_A"][onclick*="module=ind"]');
+                        //         if (homeButton) {
+                        //             homeButton.click();
+                        //         } else {
+                        //             console.log('Home button not found, using direct URL...');
+                        //             // window.location.href = 'https://scr.cyc.org.tw/tp11.aspx?Module=ind&files=ind';
+                        //         }
+                        //     }
+                        // }, 2000);
                     } catch (error) {
                         console.error('Error clicking login button:', error);
                     }
@@ -363,7 +356,7 @@ async function injectScript(port, attemptNumber = 0) {
                 setTimeout(function() {
                     console.log('Attempting to close SweetAlert...');
                     closeSweetAlertAutomatically();
-                }, 10000);
+                }, 500);
 
                 let count = 0;
                 const intervalId = setInterval(function() {
@@ -402,7 +395,7 @@ async function injectScript(port, attemptNumber = 0) {
                 console.log(`Created new page with Puppeteer for port ${port}`);
 
                 // Navigate to the target URL
-                await page.goto('https://wd.xuanen.com.tw/wd08.aspx?module=ind&files=ind', {
+                await page.goto('https://scr.cyc.org.tw/tp11.aspx?module=ind&files=ind', {
                     waitUntil: 'networkidle0',
                     timeout: 60000
                 });
@@ -419,7 +412,8 @@ async function injectScript(port, attemptNumber = 0) {
         } else {
             // First attempt - use the main target
             console.log(`Navigating to login page for main target on port ${port}...`);
-            await Page.navigate({ url: 'https://wd.xuanen.com.tw/wd08.aspx?module=login_page&files=login' });
+            
+            await Page.navigate({ url: 'https://scr.cyc.org.tw/tp11.aspx?module=login_page&files=login' });
             await Page.loadEventFired();
             console.log(`Navigation complete for main target on port ${port}`);
 
@@ -471,8 +465,8 @@ async function main() {
             await injectScript(port, 0);
             
             // Wait between attempts
-            console.log(`Waiting 12 seconds before second attempt for port ${port}...`);
-            await new Promise(resolve => setTimeout(resolve, 12000));
+            console.log(`Waiting 8 seconds before second attempt for port ${port}...`);
+            await new Promise(resolve => setTimeout(resolve, 6000));
             
             // Second attempt
             console.log(`Starting second attempt for port ${port}...`);
@@ -480,7 +474,7 @@ async function main() {
             
             // Wait between attempts
             console.log(`Waiting 1 seconds before third attempt for port ${port}...`);
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 100));
             
             // Third attempt
             console.log(`Starting third attempt for port ${port}...`);
@@ -488,7 +482,7 @@ async function main() {
 
             // Wait between attempts
             console.log(`Waiting 1 seconds before third attempt for port ${port}...`);
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 100));
             
             // Third attempt
             console.log(`Starting third attempt for port ${port}...`);
@@ -496,7 +490,7 @@ async function main() {
 
             // Wait between attempts
             console.log(`Waiting 1 seconds before third attempt for port ${port}...`);
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 100));
             
             // Third attempt
             console.log(`Starting third attempt for port ${port}...`);
@@ -507,7 +501,7 @@ async function main() {
             // Wait between browsers
             if (port === ports[0]) {
                 console.log(`Waiting 10 seconds before starting next browser...`);
-                await new Promise(resolve => setTimeout(resolve, 10000));
+                await new Promise(resolve => setTimeout(resolve, 3000));
             }
         } catch (error) {
             console.error(`Failed to complete process for port ${port}:`, error);
