@@ -198,31 +198,31 @@ async function injectScript(port, attemptNumber = 0) {
             const arrayPortFieldsTimeMap = {
                 9222: [
                         {field:'A', time: "8", delay: "20"},
-                        {field:'A', time: "8", delay: "20"},
-                        {field:'A', time: "9", delay: "20"},
-                        {field:'A', time: "8", delay: "200"},
-                        {field:'A', time: "9", delay: "200"}
+                        {field:'A', time: "8", delay: "15"},
+                        {field:'A', time: "9", delay: "15"},
+                        {field:'A', time: "8", delay: "180"},
+                        {field:'A', time: "9", delay: "180"}
                     ],
                 9223: [
                         {field:'B', time: "8", delay: "20"},
-                        {field:'B', time: "8", delay: "20"},
-                        {field:'B', time: "9", delay: "20"},
-                        {field:'B', time: "8", delay: "200"},
-                        {field:'B', time: "9", delay: "200"}
+                        {field:'B', time: "8", delay: "15"},
+                        {field:'B', time: "9", delay: "15"},
+                        {field:'B', time: "8", delay: "180"},
+                        {field:'B', time: "9", delay: "180"}
                     ],
                 9224: [
-                        {field:'C', time: "8", delay: "20"},
-                        {field:'C', time: "8", delay: "20"},
-                        {field:'C', time: "9", delay: "20"},
-                        {field:'C', time: "8", delay: "200"},
-                        {field:'C', time: "9", delay: "200"}
+                        {field:'C', time: "8", delay: "15"},
+                        {field:'C', time: "8", delay: "15"},
+                        {field:'C', time: "9", delay: "15"},
+                        {field:'C', time: "8", delay: "180"},
+                        {field:'C', time: "9", delay: "180"}
                     ],
                 9225: [
-                        {field:'D', time: "8", delay: "20"},
-                        {field:'D', time: "8", delay: "20"},
-                        {field:'D', time: "9", delay: "20"},
-                        {field:'D', time: "8", delay: "200"},
-                        {field:'D', time: "9", delay: "200"}
+                        {field:'D', time: "8", delay: "15"},
+                        {field:'D', time: "8", delay: "15"},
+                        {field:'D', time: "9", delay: "15"},
+                        {field:'D', time: "8", delay: "180"},
+                        {field:'D', time: "9", delay: "180"}
                     ]
             };
 
@@ -280,6 +280,7 @@ async function injectScript(port, attemptNumber = 0) {
 
             console.log('33333???:', arrayMapFieldNumber);
                 
+            
             urlToOpen = 'https://wd.xuanen.com.tw/wd08.aspx?module=net_booking&files=booking_place&StepFlag=25&PT=1&D='+ targetDate +'&QPid='+ arrayMapFieldNumber[arrayPortFieldsTimeMap[port][attemptNumber]['field']] +'&QTime='+ arrayPortFieldsTimeMap[port][attemptNumber]['time'];
             const targetHour = 0;
             const targetMinute = 0;
