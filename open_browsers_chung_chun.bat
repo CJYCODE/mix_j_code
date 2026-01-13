@@ -12,13 +12,6 @@ start chrome.exe --user-data-dir="C:\Users\jhong\AppData\Local\Google\Chrome\Use
 
 
 
-
-
-
-
-
-
-
 @REM 
 REM Open Profile 3 with two tabs
 start chrome.exe --user-data-dir="C:\Users\jhong\AppData\Local\Google\Chrome\User Data" --profile-directory="Profile 3" --new-window "https://wd.xuanen.com.tw/wd08.aspx?module=login_page&files=login" "https://wd.xuanen.com.tw/wd08.aspx?module=login_page&files=login"

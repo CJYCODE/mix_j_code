@@ -22,7 +22,7 @@ const puppeteer = require('puppeteer');
 const http = require('http');
 
 // This array will store the different ports for each browser instance
-const ports = [9222, 9223, 9224];
+const ports = [9222, 9223, 9224, 9228];
 
 // Keep track of which pages have had the script injected
 const injectedPages = new Set();
@@ -197,32 +197,32 @@ async function injectScript(port, attemptNumber = 0) {
             
             const arrayPortFieldsTimeMap = {
                 9222: [
-                        {field:'A', time: "8", delay: "20"},
-                        {field:'A', time: "8", delay: "15"},
+                        {field:'A', time: "8", delay: "10"},
+                        {field:'A', time: "8", delay: "5"},
                         {field:'A', time: "9", delay: "15"},
                         {field:'A', time: "8", delay: "180"},
-                        {field:'A', time: "9", delay: "180"}
+                        {field:'A', time: "9", delay: "195"}
                     ],
                 9223: [
-                        {field:'B', time: "8", delay: "20"},
                         {field:'B', time: "8", delay: "15"},
+                        {field:'B', time: "8", delay: "5"},
                         {field:'B', time: "9", delay: "15"},
                         {field:'B', time: "8", delay: "180"},
-                        {field:'B', time: "9", delay: "180"}
+                        {field:'B', time: "9", delay: "195"}
                     ],
                 9224: [
-                        {field:'C', time: "8", delay: "15"},
-                        {field:'C', time: "8", delay: "15"},
+                        {field:'C', time: "8", delay: "20"},
+                        {field:'C', time: "8", delay: "5"},
                         {field:'C', time: "9", delay: "15"},
                         {field:'C', time: "8", delay: "180"},
-                        {field:'C', time: "9", delay: "180"}
+                        {field:'C', time: "9", delay: "195"}
                     ],
-                9225: [
-                        {field:'D', time: "8", delay: "15"},
-                        {field:'D', time: "8", delay: "15"},
-                        {field:'D', time: "9", delay: "15"},
-                        {field:'D', time: "8", delay: "180"},
-                        {field:'D', time: "9", delay: "180"}
+                9228: [
+                        {field:'D', time: "8", delay: "25"},
+                        {field:'D', time: "8", delay: "8"},
+                        {field:'D', time: "9", delay: "18"},
+                        {field:'D', time: "8", delay: "188"},
+                        {field:'D', time: "9", delay: "198"}
                     ]
             };
 

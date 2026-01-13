@@ -6,12 +6,14 @@ timeout /t 1
 echo Starting Chrome instances with remote debugging...
 start chrome.exe --remote-debugging-port=9222  --user-data-dir="C:\chrome-data\debug8" --new-window --profile-directory="Profile 8"
 
-timeout /t 0.5
+timeout /t 1
 start chrome.exe --remote-debugging-port=9223 --user-data-dir="C:\chrome-data\debug9" --new-window --profile-directory="Profile 9"
 
-timeout /t 0.5
+timeout /t 1
 start chrome.exe --remote-debugging-port=9224 --user-data-dir="C:\chrome-data\debug3" --new-window --profile-directory="Profile 3"
 
+timeout /t 1
+start chrome.exe --remote-debugging-port=9228 --user-data-dir="C:\chrome-data\debug10" --new-window --profile-directory="Profile 10"
 
 echo Running the script...
 node inject_chun_spring.js
