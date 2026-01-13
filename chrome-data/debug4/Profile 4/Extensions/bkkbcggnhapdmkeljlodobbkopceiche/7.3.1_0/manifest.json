@@ -1,0 +1,72 @@
+{
+   "action": {
+      "default_icon": "/images/icon19.png",
+      "default_popup": "action.html",
+      "default_title": "Poper Blocker"
+   },
+   "background": {
+      "service_worker": "service-worker.js"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "css": [ "toast.css" ],
+      "js": [ "content.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_start"
+   }, {
+      "all_frames": true,
+      "js": [ "cookieCrumbler.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_idle"
+   }, {
+      "js": [ "contentSocialBlocker.js" ],
+      "matches": [ "*://*.facebook.com/*", "*://*.linkedin.com/*", "*://*.x.com/*", "*://*.instagram.com/*", "*://*.reddit.com/*", "*://*.pinterest.com/*" ],
+      "run_at": "document_idle"
+   }, {
+      "all_frames": false,
+      "js": [ "youtubeBlocker.js" ],
+      "matches": [ "*://*.youtube.com/*" ],
+      "run_at": "document_start"
+   }, {
+      "all_frames": false,
+      "js": [ "adsContent.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_idle"
+   }, {
+      "all_frames": false,
+      "js": [ "hooksManager.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_idle"
+   } ],
+   "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'",
+      "sandbox": "sandbox allow-scripts; script-src 'self'  'https://apis.google.com/' 'https://www.gstatic.com/' 'https://*.firebaseio.com' 'https://www.googleapis.com' 'https://ajax.googleapis.com'; object-src 'self'"
+   },
+   "default_locale": "en",
+   "description": "__MSG_extDescription__",
+   "externally_connectable": {
+      "matches": [ "https://*.pbapi.xyz/*", "https://*.poperblocker.com/*", "*://localhost/*" ]
+   },
+   "homepage_url": "http://www.poperblocker.com",
+   "host_permissions": [ "*://*/*" ],
+   "icons": {
+      "128": "/images/icon128.png",
+      "16": "/images/icon16.png",
+      "48": "/images/icon48.png"
+   },
+   "incognito": "spanning",
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDALAAHG0bnAXJo/KvLYa79Ciw8sIXbpiXHQmYZ8upJBgvIVIearA+5pwQUZ2ky54iyLYixfiX7vN5x9N2NZChwrNUPbH8Nqhrsnm5+QdhnsiZBFdq/ryLM7mRFrRw0neewXIPqRkvbx7Ocfgb+dpixeVvrHUGM2dd/r66IidHAYwIDAQAB",
+   "manifest_version": 3,
+   "name": "__MSG_extName__",
+   "optional_permissions": [ "contentSettings" ],
+   "options_page": "options.html",
+   "permissions": [ "storage", "activeTab", "webRequest", "declarativeNetRequest", "declarativeNetRequestFeedback", "contextMenus", "scripting", "webNavigation", "alarms" ],
+   "short_name": "Poper Blocker",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "7.3.1",
+   "version_name": "7.3.1",
+   "web_accessible_resources": [ {
+      "matches": [ "\u003Call_urls>" ],
+      "resources": [ "images/*", "message.html", "injectScript.js", "injectScriptAdjust.js", "youtubeAdBlockInjectScript.js" ]
+   } ]
+}

@@ -1,0 +1,224 @@
+{
+   "checksum": "7c926c9573040f5590793d92c088fa6e",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13321161604374209",
+            "date_last_used": "13383635040732442",
+            "guid": "0cf75bec-c54a-4063-84e7-bd7e73755bb1",
+            "id": "2",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Your stories",
+            "type": "url",
+            "url": "https://medium.com/me/stories/public"
+         }, {
+            "date_added": "13383632386478958",
+            "date_last_used": "0",
+            "guid": "d0fab005-0148-42d7-be37-382370fce92e",
+            "id": "3",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "你的段落文字 - 900 × 900 像素 - Canva",
+            "type": "url",
+            "url": "https://www.canva.com/design/DAGeq4Hq-Mg/0to6W7UqQbzOVZ8S4HZ7nQ/edit"
+         }, {
+            "date_added": "13383634989090056",
+            "date_last_used": "0",
+            "guid": "a177d90b-0eca-4242-a54a-5e8882f5d7ed",
+            "id": "4",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Meta Business Suite",
+            "type": "url",
+            "url": "https://business.facebook.com/latest/content_calendar?business_id=195499293009002&asset_id=113386698282887"
+         }, {
+            "date_added": "13380997993707637",
+            "date_last_used": "13400563944911798",
+            "guid": "885f3ea9-d9fa-4931-bf48-66f992870f46",
+            "id": "5",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "jjg book• Instagram 相片與影片",
+            "type": "url",
+            "url": "https://www.instagram.com/jjg.books/"
+         }, {
+            "date_added": "13380992290824407",
+            "date_last_used": "13396603641572765",
+            "guid": "68efef5a-fe7d-4a40-988a-f8081435d2f5",
+            "id": "6",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Threads",
+            "type": "url",
+            "url": "https://www.threads.net/?xmt=AQGzKRqJOHDQQ4gVOq2vHzZGXJknXwveNdG7fizZGWlzrig"
+         }, {
+            "date_added": "13317569291375133",
+            "date_last_used": "13346900431002279",
+            "guid": "cbc6217f-c408-48ef-a2c9-d99c896b4de8",
+            "id": "7",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "啾啾光說書 | Facebook",
+            "type": "url",
+            "url": "https://www.facebook.com/%E5%95%BE%E5%95%BE%E5%85%89%E8%AA%AA%E6%9B%B8-113386698282887"
+         }, {
+            "date_added": "13317581179620763",
+            "date_last_used": "13412252020784759",
+            "guid": "962d4b87-ad52-4767-ab2e-b28937aed99e",
+            "id": "8",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "(14) jiujiu guang (@jiujiu_guang) / Twitter",
+            "type": "url",
+            "url": "https://twitter.com/jiujiu_guang"
+         }, {
+            "date_added": "13322127544923581",
+            "date_last_used": "13362480406817946",
+            "guid": "d15c053e-c790-4b81-9d99-60b7f882a849",
+            "id": "9",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "上传图片 – remove.bg",
+            "type": "url",
+            "url": "https://www.remove.bg/zh/upload"
+         }, {
+            "date_added": "13317569284057945",
+            "date_last_used": "13320841500493302",
+            "guid": "1dee195c-be12-4efd-9ec8-8a2a213992e2",
+            "id": "10",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "發光吧啾啾光",
+            "type": "url",
+            "url": "https://www.notion.so/381f3079e5744016a424aa9fa739b91a"
+         }, {
+            "date_added": "13339479631531038",
+            "date_last_used": "0",
+            "guid": "73ef5d9e-12dd-4d62-bfee-9865e844a03a",
+            "id": "11",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "繁體中文 文字轉語音軟件 |音獨",
+            "type": "url",
+            "url": "https://ondoku3.com/zh-hant/"
+         }, {
+            "date_added": "13324607196146973",
+            "date_last_used": "0",
+            "guid": "0b019ae5-a3dc-4127-a7d9-3c357606636e",
+            "id": "12",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "繁簡轉換|简繁转换 - 線上工具",
+            "type": "url",
+            "url": "https://youtils.cc/big5gb"
+         }, {
+            "date_added": "13339823559353801",
+            "date_last_used": "13340276735699256",
+            "guid": "9dbb2c42-d417-4c0c-914f-a62a88af6b0d",
+            "id": "13",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "在線免費文字轉語音 - TTSMaker",
+            "type": "url",
+            "url": "https://ttsmaker.com/zh-hk"
+         }, {
+            "date_added": "13339822177351810",
+            "date_last_used": "13340366957415715",
+            "guid": "05fd6d8e-c490-44c7-983d-00add49d179f",
+            "id": "14",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "- Grammarly",
+            "type": "url",
+            "url": "https://app.grammarly.com/ddocs/2188964649"
+         }, {
+            "date_added": "13338515448612953",
+            "date_last_used": "13340294611469097",
+            "guid": "90eacaa9-5498-463a-8688-c5ec8d1d85c6",
+            "id": "15",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Google 搜尋趨勢",
+            "type": "url",
+            "url": "https://trends.google.com.tw/trends/trendingsearches/daily?geo=TW&hl=zh-TW"
+         }, {
+            "date_added": "13332561248586862",
+            "date_last_used": "0",
+            "guid": "e2447806-75be-4fdf-8429-ca9bc37d170f",
+            "id": "16",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Dashboard | Buy Me a Coffee",
+            "type": "url",
+            "url": "https://www.buymeacoffee.com/dashboard"
+         }, {
+            "date_added": "13364970710644725",
+            "date_last_used": "0",
+            "guid": "f09b480f-779f-4f93-9f48-3f45c7d9789f",
+            "id": "17",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Token Unlocks - Your Unlock Schedule & Tokenomics Data",
+            "type": "url",
+            "url": "https://token.unlocks.app/"
+         }, {
+            "date_added": "13397282840639171",
+            "date_last_used": "0",
+            "guid": "825c955b-b87d-4281-b640-0aa492a2a349",
+            "id": "18",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "AI Image Creator - Free Online Text to Image App | Fotor",
+            "type": "url",
+            "url": "https://www.fotor.com/images/create"
+         } ],
+         "date_added": "13391279117996335",
+         "date_last_used": "0",
+         "date_modified": "13397282840639171",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "書籤列",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13391279117996337",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "19",
+         "name": "其他書籤",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13391279117996338",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "20",
+         "name": "行動版書籤",
+         "type": "folder"
+      }
+   },
+   "sync_metadata": "Cm8KTwiIgQISSSAAkgE2CjQKDmNocm9tZV9zeW5jX2JtEgU1MSFibRoSCedN9Cv1RwYAEedN9Cv1RwYAKaUS9Sv1RwYA6gELCL6bhMsGEICP2F4SACoYS3NlMGNTTVZDK0NTVzFYQktER2g5UT09SAMS7AEIDhLnAQocaEFlQmxyNS9HSUxZUGNhUzNsRDZ0MjRDTFZ3PRJmWjpBRHF0QVp5Qk5wdW83eW1LQmNBQ3dsM2xoVVZ2WkEzU3NMb3dBcUhHaHVVVVUzTS9qaXlJZytoRFpMTklQbjB3N0tHZVJEdVNIWDkyQTNNT0VIbzVBbzlTZzFPY1dXTlcvQT09GAAgACgAMNrWgYn/zIEDOMeomdWrMUDHqJnVqzFKHFVCbmwyTlIvNkozRC9QRVpsR0hmYVliSTdWcz1aHyId/TArVVRScG9UVzNRaXROTlkzK2RJb0pMSTJ5Yz1lJCxBSxLDAQgTEr4BChxZY1NUb252RVNQd3FDczRMMmNyVmh2NjhMOTg9EmZaOkFEcXRBWndGTjRKdFhRSmt6Zk5hU0h5S0JCOVE0UkYwdFZsMjFGbksvU3ZlMndBcDY2U216aWxuMUV1TjdKWUI0QWFvQzhhQWxWb1J0MXY0bnB5WWFyTUgwQ3hiN3NoRFNRPT0YACAAKAAwqoTBid6WjQM4AEAAShxvUFZraHdCUmJWNjVLQ1dSMitJT05IV29PdTg9WgBlAAAAABLsAQgMEucBChxXWGt3dnI0Unp1U0cwa0xlQ3ZzVjNXMFJpZTA9EmZaOkFEcXRBWnlCTnB1bzd5bUtCY0FDd2wzbGhVVnZ0dXN4NzlFZlJGSEhNN012Z2pXckdkYjh6b0dZLzZHMk5NNnFpOHhBNnVmdDJsTHU1THJJSlNKVHF5TEtBTzNCeVN4bFBnPT0YACAAKAAwxsLfsamC/gI488eQ/vIwQPPHkP7yMEocTnMySHNvajRhbWpYUHltOVBTb3BRdGx1ZXdvPVofIh37R2hyMVVFRVVvOFVYZ2tTNmV0ekNLazM3VU1VPWXwdpREEu0BCBIS6AEKHC82b1pEdlZZL3lmb2NaN1JkcElYSVJ3VExZUT0SZlo6QURxdEFaeUJOcHVvN3ltS0JjQUN3bDNsaFVWdmplOThIWnl3ejB4VjQzUkZhOGsyVnNoOExPT2VRa2N6T0xCNUFrVHVWR0t5cTBEMk4wTUErNHlKRGxiMkFsSGUzK2VjaFE9PRgAIAAoADDO3Zeiu8WOAzjB8MncgTNAwfDJ3IEzShwxTEI1TXdhQUJmdzVCZVNacVJZNGd0dno2Tlk9WiAiHv/ySnVsT2VBUXUvY1VabzRqaE9yL2doNStpaHBrPWVkoixQEuwBCA8S5wEKHDR2NTZBN2JhNTBQYVplRjNiazNxaUtINUxGdz0SZlo6QURxdEFaeUJOcHVvN3ltS0JjQUN3bDNsaFVWdnVzSHREUjJOYldzVDFBeGptUFdJMnV4OXNsbUJDYUpTSXZSNmpvMUU5V3NrMTFCRldITnN2c2JFWmJBUGR6WlVvYzI5TEE9PRgAIAAoADD6y9W849iBAzil9ozmpjFApfaM5qYxShxTb2tENnlFTHN3Uk5oT0pDT3NqTEJkdGNPRVE9Wh8iHf1DWGt1cnVtTEtqd1l1Q1RSaWpydnY1NXNZRXc9ZVp5zW4S7QEIERLoAQocdWxOUjU3T0hPVTAyejAyczZOQXFweitKQmtBPRJmWjpBRHF0QVp5Qk5wdW83eW1LQmNBQ3dsM2xoVVZ2OUg4ZzE3bmYvTkVEeVZ5Wm5DQW5XS0pkcWg0dkhzNXZqdEdZYStrQXRzNjhkeDF5ZllpQzNiYk9Wd1IvOTduVWxNeG1sdz09GAAgACgAMNyFwZmHmYcDOPT8+ayJMkD0/PmsiTJKHC8vejlPcEV4Tnl2YVpQVENxWlZVeVRaZmNpdz1aICIe/+VBMFNYR3ZaM0RYbGhWTmRzMXN0NHd0RjJBSlk9ZUj6elwS7AEICxLnAQocdWNpdUN0VmlaaVgwQmNpbmlQSVdmVUp2bGpVPRJmWjpBRHF0QVp5Qk5wdW83eW1LQmNBQ3dsM2xoVVZ2ZTN2M1p5YnNiR1N2YWduYWJhOEhrbFgyRU5NNlNtdkt0UlRCUzJnQlZWOUdydHpPczh4STdCaFNZSFBoakVIUTMwaG94UT09GAAgACgAMKydmJnJtYEDOKv97bGqMUCr/e2xqjFKHDZkWTZ6MW1EbmFDQlluN3cyNUFuK0NUZTFTUT1aHyId+TBNZ2NiMGptTTNzblgzenBxUC9Td1JXMU1Wdz1lhBCqshLsAQgEEucBChxwaitoeks4U0R6OExJeDZrL0Z3dHpDUzhTdDg9EmZaOkFEcXRBWnlCTnB1bzd5bUtCY0FDd2wzbGhVVnZWdlZ5Q2RQemk2cUVsQ0pLQ2hTME9uMGkrT1V6ZEJzbkVaT3lXaEViYnFoMnk2YU1IVGxUOTJKYjV5SFZNcGo0ZHE5VzJRPT0YACAAKAAwrqCcqbnkjAM4o5Dj8M4yQKOQ4/DOMkocZU9wWjM2Z3dXZkFuZHh3a1JrS0N0aEwrOXNnPVofIh0bY0gzcFZ2QzJuVGswYW9vQ3IvNUZIZWNNazlrPWV0slBiEuwBCA0S5wEKHEZHL1dpSmVwNm9sKzM0RnQ3ZXZSZXFrMkZ6VT0SZlo6QURxdEFaeUJOcHVvN3ltS0JjQUN3bDNsaFVWdnFsai9BK2ZNMFlHMDl3R2x3eFN0MDd2MFBZTTZCUmM3bkg0bk1CUGFOblE2RnRSSktIYjdZS1JIZVF6WnFvclV5QW9jYUE9PRgAIAAoADC1lLqH/8yBAzi51e3VqzFAudXt1asxShxpUmUwa01lYlordktIOGdDeEtGRm50V0pQbjQ9Wh8iHfx6TGdKV3pRV2luYUNzbWc1eEpSclg4blpRbmc9ZV5TptQS7AEICRLnAQocMEF1ZWRyQUFDak5zWDRQenNnWFJ6blBScWhjPRJmWjpBRHF0QVp5Qk5wdW83eW1LQmNBQ3dsM2xoVVZ2ZXN4WUxiYWxsZFBpazFVVjBDVGJZb3RvN0NqdGR4a1JuVkVab2pZb3lBNDdoZit1VlBXNkFTQnM5SFR1NS81eTRQeng3Zz09GAAgACgAMKKdvYzK0IYDONzU3t/pMEDc1N7f6TBKHFVDTGhvSGxWeGlUSGM1T3FraFZ2SEYwTC9qbz1aHyId9zRFa2JLbDZKRlNLeFNkaGF6dE5rbkpwdThUQT1lacLGMBLsAQgKEucBChxUNno1QnJIZWlkeWpTRmw4aGF2U09nUEU3Szg9EmZaOkFEcXRBWnlCTnB1bzd5bUtCY0FDd2wzbGhVVnZqQjRTaUdtOWhxcEFpeVBKMWtlT1Z6NEozNUlXZkZZRDNncEI2VDRFYW05cXZKckJiaWYwQ1o1UVNCWlBCTzVkQW9LeTRnPT0YACAAKAAwp6GMjqG4iwM42r+Y4tgwQNq/mOLYMEoceXZ5MFZOTGZxY0xVbnFKNzJXWFRQa1dVbmNrPVofIh34QTJnOGd5ODIweWZLeThEN0E1aVpFUTVCbE9RPWXM8kkeEuwBCAcS5wEKHGRxdzFBRHkyeDFYdDQ5MklybitZOWtuNk5NTT0SZlo6QURxdEFaeUJOcHVvN3ltS0JjQUN3bDNsaFVWdmVENkZrYWFqNmlQM1RFRXVFcGdFcm1FL1IzcDNUd25PKzNZOUs3aXpUVzFtS1JrSGE1anNxQllSd0ZSaXdVdExzbE80S2c9PRgAIAAoADC0sKSXkouDAzjv+Jji2DBA7/iY4tgwShwvYlRXL2NrZ3JtR3dsVFdJSHB1c1VtdVRZNms9Wh8iHbsveHc4bEM0MW0xMHVoNHduN0pMajhUWkJGbGc9ZUQI/X0S6wEIBRLmAQocMGpTc2JNelE4cTJMYVpRWUNuVloxRzE2WXJnPRJmWjpBRHF0QVp5Qk5wdW83eW1LQmNBQ3dsM2xoVVZ2K2JpYm5DQzdvVWRIUmpxbE9odE9YQVpLSzRNdWtOTUgzbjRZb3M4ZmwvbkFOMytJNVNhejl0UWtSTDFycmFyTC96dDBKZz09GAAgACgAMKnZ9ar6pI8DOOvZrYfFMkDr2a2HxTJKHHp6Y081ZVUwOEhJOUhPemhJN3dQZHFJaDk4Zz1aHiIcUmxSaEl6NFhIYVg5d0tEeDRmQzdSQlVkWkw4PWV5JuzwEsMBCBQSvgEKHG5qZ0R1ODhlQ3J2WHA4NnBEN2ZIR2NxRnA4OD0SZlo6QURxdEFad0ZLQ3FBeldzSDNwYXZPTThRZGN4ajFtMXV3Rk5xYlFlSktjUEFnN2RPYjh4cFZTSFlBNTVWTEkrRml4akFsT0RpNGk4U003VVo0K2ZZUitXVmIxcDRsbCtLeEE9PRgAIAAoADCqhMGJ3paNAzgAQABKHHl6TkIwMWNuNTRBN2NSVTB1VCsvUGdtVHRVbz1aAGUAAAAAEuwBCAIS5wEKHFZucFNER1E0ckMxUTg1d0dyazBiOW5SZGd4TT0SZlo6QURxdEFaeUJOcHVvN3ltS0JjQUN3bDNsaFVWdnFqNWI0bldSQ2xFUUI3WFVzTEFVa3ZOREhPOG9DM0VJRUkvUjYxV2ZBZElhM0FtNjdtZlgwanpYMTA2bm5TNjVxYnNySlE9PRgAIAAoADCxrr2fobiLAziWqpKT5jBAlqqSk+YwShxQVkorRHBLK1lxUkk1RkNCbjlWM0U0Y2g3eWc9Wh8iHQY3NjJQV2JJQ3lBSlh6RlpyL0MvYXF3aGdKZlU9ZatNfMsSqwEIARKmAQoceXhKLzZmdmtlY3I3a3A1RVF6QjR0V0xwZGJFPRJOWjpBRHF0QVp6TzFCVTd5Y1BoYUVCdlowaGo5cXFibEg2QVlVOTlkOW1LcmttN2pNeklJS0tJRkhQS2JYVHJSOXRnUkJtNjAveHhNYVZuGAAgACgAMKqEwYnelo0DOABAAEocYVJDV0xnaEY5YjVJbnFLSUR2dUovanZRa0ZjPVoAZQAAAAAS7QEIEBLoAQocRldvMlN1Ykg3cFZZV1pHbXdMR3FaQW5tREVNPRJmWjpBRHF0QVp5Qk5wdW83eW1LQmNBQ3dsM2xoVVZ2QlRMb3I4aGpHdE1VcEY0QTF0Sk83V3hpOWZ6djNmRFZGaGJiMDZxSmhkU3VuYnp0dXhkTkY2Wmk0Q0pJT0FZWWduODFLZz09GAAgACgAMJXrgoOrpoADOMuy9c6QMUDLsvXOkDFKHGo2N1g4Z3kzdW56SmJnM3VTUmthbEZmWTdhVT1aICIe/7gzZ0pGODJvcnVRN0FzSmxIR0JVMnNaWndJTXc9ZYZG7fMS7AEICBLnAQocUVlXR2xWelZGWGxLRmVzSHJMWHcrUGs5NUw4PRJmWjpBRHF0QVp5Qk5wdW83eW1LQmNBQ3dsM2xoVVZ2Q21tbEF2NldCbHllSlNCeUVGZTVlcENrT0lrYStaOWVXMEZoWG1naXV4KzBUUlJuQnpKdWE1ZEc3KzU3dEpLV1BXUzM0QT09GAAgACgAMImPgNbI+5EDOOXF7ufYMEDRmr7muTNKHEdnKzlQaE5SRTJrRzRoZ0c2MlJyTzNWMGNxdz1aHyId1C9XNFZPMjkrU1o0L3lpZWdXV2RXT0dmcmc2WT1lPbZ26hLrAQgGEuYBChwzTXBEbXJCbGFYbE9lVkhNUEhqUE1yUlVUUzg9EmZaOkFEcXRBWnlCTnB1bzd5bUtCY0FDd2wzbGhVVnZkdEUrTXVHOGdHWXhrNHkvaDM1dGZRdHpYWUlSNUJWOVZEWm01cXBXVGZJRnl2dEdobWhCQlVERFJXRXNsZTl3SlRJbmh3PT0YACAAKAAw+dO7ncKnjwM4idDRhMUyQInQ0YTFMkocSzljVjFHZVlvS0JhK2FvUmNENHhsQWFwWEk0PVoeIhxpOTBkQ0hVY1FsbDlWRzlvL3h4RWllbVQxQVk9ZVVbYQMS7AEIAxLnAQocTVMzL0h2MGkxbXdWTXp5cWZ3dEZnWmM3QVZjPRJmWjpBRHF0QVp5Qk5wdW83eW1LQmNBQ3dsM2xoVVZ2b1RLdHN5TlQrLzBmSEo5SmJlZEFhM2dmcHp0QXlYRWI1N1p5T1o2WmR0a3NxZ2ZVMTc3dUkyb2Yyb3BiU0kwMWZ4WmNWQT09GAAgACgAMK6gnKm55IwDOLKjxO/OMkCyo8TvzjJKHFFMTysyMUVJYnM4ZWErMms1YUNvQ2JYTW8zYz1aHyIdDXJFNi9NRmM4QUtsTEJ1c3ZTN0UrQkZlV05LWT1lzuVKWjABOAA=",
+   "version": 1
+}

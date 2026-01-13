@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=11" />
+    <title>3DS Check Phone</title>
+    <link
+      rel="stylesheet"
+      href="/acsn2_kernel/css/main.min.css"
+    />
+  </head>
+  <body id="initialPageBody" data-otp-enable-delayTime="0">
+    <noscript>
+      <!-- <strong>without JavaScript enabled. </strong> -->
+    </noscript>
+
+    <div class="wrapper">
+      <div class="center-box">
+        <div class="content">
+          <!--- Loading - start--->
+          <div id="overlay" class="overlay">
+            <div class="loading">
+              <div class="ds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+          <!--- Loading - end--->
+          <!--- Dialog - start--->
+          <div id="dialog-overlay" class="dialog-overlay">
+            <div id="dialog" class="dialog">
+              <div id="dialog-message-container" class="dialog-message-container">
+                <div class ="dialog-message-title">您確定要取消本次交易之身份驗證作業嗎？</div>
+                <div>請按「取消」, 並輸入密碼完成本次交易。</div> <br>
+                <div>請按「確定」, 將無法完成本次交易之身份驗證作業。</div>
+              </div>
+              <div class="dialog-button-container">
+                <button id="dialog-cancel-btn" class="button dialog-button-cancel">取消</button>
+                <button id="dialog-confirm-btn" class="button dialog-button-confirm">確定</button>
+              </div>
+            </div>
+          </div>
+          <!--- Dialog - end--->
+
+          <div id="logo-container">
+            <div class="logo-container-left">
+              <img
+                alt=""
+                src="data:image/null;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAKAAD/4QPzaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA2LjAtYzAwMiA3OS4xNjQzNTIsIDIwMjAvMDEvMzAtMTU6NTA6MzggICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0idXVpZDo2NUU2MzkwNjg2Q0YxMURCQTZFMkQ4ODdDRUFDQjQwNyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozMTk2M0I4RjdENUExMUVBQjUwRkY5OUFBMkE4OEJCRSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozMTk2M0I4RTdENUExMUVBQjUwRkY5OUFBMkE4OEJCRSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBJbGx1c3RyYXRvciAyNC4xIChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ODZGN0M4RkQ3RDIxMTFFQUI1MEZGOTlBQTJBODhCQkUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODZGN0M4RkU3RDIxMTFFQUI1MEZGOTlBQTJBODhCQkUiLz4gPGRjOnRpdGxlPiA8cmRmOkFsdD4gPHJkZjpsaSB4bWw6bGFuZz0ieC1kZWZhdWx0Ij5XZWI8L3JkZjpsaT4gPC9yZGY6QWx0PiA8L2RjOnRpdGxlPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/tAEhQaG90b3Nob3AgMy4wADhCSU0EBAAAAAAADxwBWgADGyVHHAIAAAIAAgA4QklNBCUAAAAAABD84R+JyLfJeC80YjQHWHfr/+4ADkFkb2JlAGTAAAAAAf/bAIQAFBAQGRIZJxcXJzImHyYyLiYmJiYuPjU1NTU1PkRBQUFBQUFERERERERERERERERERERERERERERERERERERERAEVGRkgHCAmGBgmNiYgJjZENisrNkREREI1QkRERERERERERERERERERERERERERERERERERERERERERERERERE/8AAEQgAZAEYAwEiAAIRAQMRAf/EAJ8AAQACAwEBAAAAAAAAAAAAAAAFBgMEBwIBAQEAAwEBAAAAAAAAAAAAAAAAAQIDBAUQAAEDAQQHBAYIBgIDAAAAAAEAAgMEEVESBSEx4ZITUxZBYXEiscEyUnIG8IGR0UIUNBWhgqKywiMzVOJDYxEAAgECAwYEBQQDAAAAAAAAAAECEQMhEhQxoeFSYhPwQVEEYYHBIjKRsdFCcfFy/9oADAMBAAIRAxEAPwC5Iq91O3lHe2J1O3lHe2KmeJ06W7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sTqdvKO9sTPEaW7yFhRV7qdvKO9sRM8RpbvIVhERc57oREQBFJ5NSx1c5jlFrQ3Fd2hWD9ho/c/qKuotqqOW57qFuWSSdfHxKYila7Lx+c/LU7ewejtKlaf5ehYP9xLz29gRRbwRMvc24RjJ1+5Vp5+PmVVFc/wBho/cO8U/YaP3DvFT22Za236S/TiUxFc/2Kj9z+oqoTNDHuaNQJAVXFrab2r8LrajXD1/2Y0RFU3CIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAmvlz9U74D6QsvzDK9kzA1xHl7DZ2rH8ufqnfAfSFMZjlArnh5eW2CzUtUm4UR5dyUYe5zT2UNb5djtjdO7S5xw2m4KNzfMpJJnRMcWsYcOjtI12qZyuNtI+SjDrS0h48HBRWcZVKJXTxNLmO0kDWD2/T7UaeWi+ZFuUHflK5sa+yu7dsAyauLA4P0+7iNqj6hlVTOwylzT8XrUlSfMEkQEc7cQGi0aHfT7FOtdBmMOix7DrCKMWvtJd27adbsE4vzXjczXyRxfSMLjafNr8SqjU/8AK/4nelT01XJk4EDWh0ektcfQq/I/G4vPabVWTwSN/bRead1fhP8AHeeFv5XQmslwn2G6XH1LXpIBUStiLsOLRbrVsgpoqKAwMkDXH2n9tt/3JFVdWW9zfyRyR/J+KlVrYWQTOjidia02W96yy5XPFC2ocPK67WLrfpo7VIHK6BvtVOn4mrepaiipI+EJ8bbnafQFKiv7YGT9w0o9qsmvyw/Iqa2aSkfWScOOy2zF5lvZtl7KYiaEjhv1C7w7vQtbLYJZZgYRbh0uFtloVaNOjOl3VK33YOmHmSMfy48xuL3f7Pwgez9ehYIcikMoilcG2hzrW6dVg7r1MS5fI+sbM0kRDS4W9o7l5hhkZmLnuFjCx2AeBbboV8q2U8zzl7i5RtTWKrs3fU0HZPRxf8lQB3aAoWoYyORzI3Ymg+U9ynnfLrZHOcJhrtPl1f1KGraYUspiDsYH4vpaqyTS2UOyxNSlTuObpspQ9UOXyVj8LPZ/E7sC3qzInRMxwO4lntDtWXJ65vCdTSvw6QGEa9OvYsldHFl0b2QyOEr/AMNt/bt1qUlSplO7c7uSOGP2qlU/n/B8lyKlgs4s+En3rB6VjmyaAQPmhlxhot0WEaPBSGay0zHtE8TpHWaC277QsbHwPoZjTxmNtjrQ6+z61LUdip+phG7dpGTlLF+ip4+RVVKZflgqo3zSuwMbqd6VGAgG12rtVla8ZnGKanBjiaPMe/sb6zpVEk3id9+coxWXD1nyojMvysVrXO4gbYcOkbVu9N//AGG7tWGnyWOZmMzgaSPZuJF4WcfLrHGxs4J+H/yVksNm8wne+50vZfhkNHMcr/Ita7GH2mzRoUYpfMMobRxmQShxBsw4bPWVEKjVHQ6rMlKFVLP1UoERFBsEREAREQBERAZqeqkpnY4nYXEWWqyZDVzVfE4zsWHBZ2a7blVVYvljXN/J/ktIN5qHH7qMXblKizYY0+JrZvO+CuMkZscA2w/Ut+k+YmP8s7cJ94aR96jM+/WO8G+hRSjM03T1EbELtuGbblWK8fuXWpoafMWYxYSdUjdartNNJldUWP1A4Xi8X+sfYpL5ZxYZLfY8tnj2+paXzDZ+b0e623+KtKjWZYM57SauT9rJ5oU8ePUm85gFRSuI1t84Phr/AIKmK7nyUPn1iLTuqkJc21+Bp7JvLOPowrRIyioaeN8sWLEBqbabbLe1VdW6rpoailhE8nDADbCbBbo71EU/It7ppO2pVUW3WhH/ALnlv/XO6371nparL6qVsLYLC7ViaPG9YP2ug/7I3mrYoaCkjna+KcPc3U20aVZZvNI5ZdlRbjKdafEic2YIqp8bfYbZhF1oB0Jl3CtdxpXRXFhst/gV6zv9bJ/L/aF8yttLxMdS6wN0hvYfpcs9kqL1O7b7dVr+K2bfL67S0RUgMBibJIQ4W4y7zfUVpUMcbar/AFSvkwteHcQ24Ta28C4/YvQzJ8tJJVMsGE+Udws1r1W1TaSAz4Q2WQWaNNp8e5bN+Z5KjKuV7W8vzwNLKjbFVkd/ocq4rBkX6Wo8PUVX1g9iPWtKly6v+f2LHlTnQUrZOG1zXP8AaxaRa6z3b+9b2ZPcY5W8MENZ7bnX26tB1LRyZsz6fC0NMZfbaXadFmoWetb2YgVDXwtkGJzfLGLLSRpWqrlojzblO66838Gw+rLKttP2OaXW94WrKameOZsuGOMYmhzu0Xr3W0DpqhlQHhjY/vWCuiOaQh1M+3CdLLdBP01dnpUtvzKRUawaouaTX4vEq7A0uAcfL2kK1xugZQyspnWhrHWnvsVSILSWnWNansp/Q1Pg7+1Ui6Oh6fuo1ipVeDWBAKSyL9bH/N/aVq0dK6rk4TLA439ym8syeemqWyyWYW4tRvBCiKbxXqaX7kFCcHJKTi8P1IrNv1cnitFb2aG2qk+JaKq9pra/CP8AyvoERFBcIiIAiIgCIiAKx/LH/u/k/wAlXFsU1ZNS28F2HFr7dXirRaTqzG/B3Lcrcdrp9CzV2SNrJTMXltvZZcsUfy1EDa97j3WWKG/eKzmH7G/chzirOgyH7B9yvWLdaYnKrPuVHKriSXj0LPLNBlsNuhrQPK0ayVXKWJ+aVeN+onE7uF3qUfJK+Q4pCXG8rNT5hPTNwROwjwChyTeOwvD28rcZOLrcl/Z+RZc9qRDTmP8AE/QPDtVQWaepkqHY5XYisKrJ1dTaxa7UMrxbxYXt0r3gBziQNQJXhFU2aTdWF6a4sNrTYbwvKIS0mqM9Oe55tcbTeV5RECSSothmFRIGGIOOA629ixl7nAAm0N1LyiEJJOqXxM0dRJEC1jiA7WB2rCiIEknVeZ7Ejw3CHHDd2L7FK6Jwew2OGorGiBpNUfmZZaiWbTI4u8Svkcr47cDiLdBsWNECiksqWHoF7bK9oIDiAdYBXhEDSeDPTHFhtabDeFn/ADs9mHiPs+IrWRTVkOMW6ySf+Rr0lERQWCIiAIiID3w3XFOG64roqLXtnl67o38DnXDdcU4briuionbGu6N/A51w3XFOG64roqJ2xrujfwOdcN1xThuuK6Kidsa7o38DnXDdcU4briuionbGu6N/A51w3XFOG64roqJ2xrujfwOdcN1xThuuK6Kidsa7o38DnXDdcU4briuionbGu6N/A51w3XFOG64roqJ2xrujfwOdcN1xThuuK6Kidsa7o38DnXDdcU4briuionbGu6N/A51w3XFOG64roqJ2xrujfwOdcN1xThuuK6Kidsa7o38DnXDdcU4briuionbGu6N/A51w3XFOG64roqJ2xrujfwOdcN1xThuuK6Kidsa7o38DnXDdcU4briuionbGu6N/A51w3XFF0VE7Y13Rv4H1ERbHmhERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREB/9k="
+              />
+            </div>
+            <div class="logo-container-right">
+              <img
+                alt=""
+                src="data:image/null;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEABAQEBAREBIUFBIZGxgbGSUiHx8iJTgoKygrKDhVNT41NT41VUtbSkVKW0uHal5eaoecg3yDnL2pqb3u4u7///8BEBAQEBEQEhQUEhkbGBsZJSIfHyIlOCgrKCsoOFU1PjU1PjVVS1tKRUpbS4dqXl5qh5yDfIOcvampve7i7v/////AABEIAFoBGAMBIgACEQEDEQH/xACPAAADAQEBAQEAAAAAAAAAAAAABgcFBAEDAhAAAQQBAgIJAwMFAQAAAAAAAQACAwQFBhETMRIUIjJBUVJUcRWBkiFCYRYjcpGhYgEAAgMBAQAAAAAAAAAAAAAAAwQAAgUGAREAAgIBAwIEBAYDAAAAAAAAAQIAAxEEEjEhUQUTQVIiMmFxFFNigZGhM0Jj/9oADAMBAAIRAxEAPwDasUtUM3MdwyBYE+Rz9YkTzTs+VREOa14Ic0EHwKcTVgfPTW37YgzX2YiTP65lveyI+uZb3sidL2mqFrc1/wCy/wDjuqfWqstSd8Eo2e0rRofS3/LWoPYgQLB15Jnb9cy3vZFqY/U9yKQNtO4kZSshGbT0uCDWv7CVDsDyZYWuDmhzTuCNwULPwFnp4iuT+pbuxaK5512Oy9iRGwcgGeIXq583d6lj5njvkdFnyVFUuyqOScSE4BMSsrnbpvzCtYcyJh2aAuD65lveyLJQuhWipVA2KcDtFCzE8ma31zLe9kVCxpstoQmzK58zx0jv4bqe4Sl17IQsI7DT03/AVLWdrzWpWtUUHk4ENVk5JJi3qXJT031oqsxYS0lxCWPrmW97IvrqCbi5SYeEezFiJzT0ViivcikkZ6iDdjuOCZrfXMt72RPWnpLVmhxrMznlzztuperDjK4r0KsXlGEvrxWlahUUEt6CWqyWOSYL42LVerGZJpA1q/F67FRrvmk+w8ypndvWL0xlmd8DwCU02la85JwghHcL94y29WS/qypEGj1uS9PlcjYJ4lqQ/B2Weha9enpr+VB9zFy7Hkz9F73c3E/JQ172/q1xHwV+UI0rNGHLZGDuWpPgndOeAzN3IySRTMYQxnfCnaoOkIOjVnm9b0jrUqWlm2Lu9DC1liwGYwIQhYsZgl3M500n8CuAZfE+lMVmdlaCWZ/JjSVI55n2JpJXndz3FxT2ioW1izjKrBWuVGBNE53Lk79ckR9cy3vZFkoWt5NX5afwIvubuZtQZ3KCaIvtyFvTG4VHUeVdx1oS4+rJvuTEFneIVKorZVA5BxDUsTkEz6IQhZkPBCEKSQShq+D+7Wsgd8Fib1mangE2Lc8c43ByY0j7NRWe5x/MpYMoZMUIQugikoGkJt61iMnuvTCkrSMu12aL1xJ1WDrV26h/rgxqs5QQSVqu9xrUdZvdiG5+SnOeZleCWZ3dY0kqSzzPnmklf3nuJKN4fVusLnhZW5sDE+SELro1XW7UMA/c79fha5IUEngCLx40xV6tTM5Hbm/41bznBrXOPIAlDGNjY1jRs1oAAXNnZhWxNkjxb0B91zzMb78+5o4BtX7CSyeQzTSyHm95d/tfJCF0QGABE52UIOsXa0XqkCqqQ9KwcXJ9PbcRMJT4sfxF82qvtWM0j4SYh6ntGW9wGnsQpaXflCXZG2Tz4zlwLToUJTWo9ogGOWMEzYjTkt+MTSv4cSWVUsDkILdKGNpAliYAWIOsstrqBTv1PaWrVS3Wco0zimAgiRx/yRLpPGu7jpWLZQsn8Tf+a0Y2J7REu1pOywF1aYShNWKgNPHwQuGzw3d38ErqQpZqbbUCuQcHM8CKpyIIQhzg1pcTsANygS8WtW3to4qjT3u29Ia7cjbNy5NP4Od2fhcS6LTVeVSq+vJibtuYmCFqYugbps+UcLnfdZaIGBZlHK4zPMdAYKl6Vm4uM4fokIU0Tro6bt24fh6W1y7tOx7EGXqOHjYhCFhRqCEIUkgvJ4Wz15YzyewtXqF6DggySQOaWOc08wSCvytbOV+r5S0zwLukPusldKjb0Vu4BiRGCRNnATcHLVT6nFqpCklaThWIZPS9pVb3G2/gsrxFcWI3dYek9CIs6otiOtFWae1L2nfASItLLXDdvzzft32b8BZq0NNV5VKr68mCdtzGCd9KUw0S3JB/4YkyKN80rI2Ddz3ABVirAyrWhgbyY0BL6+3ZUEHLS1S5bPafVLusJ9oK0HreXJiSFqmcSZLhjlEwBI6JN2oX9OTC2nCGLaEIW7FY+6ShDK1idw77w1Mi4cNF1bFVWDvOb0j913LndQ+++xv1RxBhRJ9qSma+SfIO5N2wl9V7IY2DIVTC8beLXeIKl17H2aExjmZ8O8CtXR6hbECE/GogLEIOfScS+kUskLw+N5a4ciF80J3mCjnj9VyN2jut6Q9YTbWngsxiSGQPafEKPrrp3rNGUSwSFp8R4FIX6BHya/hbt6Qq2kc9ZVkLmxOWgyFbpDsvZ32LpWQysjFWGCIwCCMiCxNSXBVocFh7cx2W2pxnr3XcjKQexH2GJnRVeZcCeF6mUsbC/eYqELqpVnWrUMA/e4BbhIUEngCKx807VFfG9Ijtz/qUg2ouDZni9Ejgqy1rWNa1o2AAAU61FCIstP5P2eszRWl9RaT/ALDMPYuEX6TDW/pqfg5aLyeC1YC6aUxgt15fTI0rRtXfU691MCpwwMrCEIXNR2CEIUkghCFJIn6vrls9af1MLSk5U3VEHGxjn+MTw5TJbuhfdpwPaSIraMPBUS9kuFp2B4PbmiDAp2uqa1JNBWhPdhBA+5RLqRa1RPCtkzxW2hvqJyoQgAk7BHlI0aXp8S0+04dmLu/5FPK5cTUFHHwxkdrvP/lxXUuf1Vvm3M3pwI2i7VEFKb83WLtmX1SFVPISirjrUviIypCnPDU/yP8AtB3HgQX1gjM00UY5veG/7XyW5p2ATZWDfkzd5WjY2yt27KTAgZIEorWhjWtHIABC9Quajs8Xk9eCeIxzRh7T4FfpC9BIOQZIo5DSb27vpP3Hock+WGWB5ZKwscOYKry58rjqt+u8P24g7j1oUa91IWzqO8C1QPVZJUL0ggkHwK8WvF5qYe66lfgkB7JcGv8AgqmqPt7w+VYGb9Bu/kFk+JKA1bepBjFJ6EThzNrqOPlk5SP7DFLEzanuCa4IGHsQpZTeiq8ukE8t1g7Wy32gnLSVQGWa2/kwdFqTV318pfqx8OCw5jPIIuoR7KmRCATKoQGBMqSUdYQ7TVZvNpasP69l/ePXLayN241rbE7pA07jdJ6fR202q5ZcQj2KykYM4kIQtKBldoWRLQrSDm+IboWdpebi4trPGOQhC5u5dlrr2Yx1TlQZqoQhDnsEIQpJPLMDZq00R/ewhSBzS1xaeYOxVgUzzUHV8naZ4F/SH3Wn4a/xWJ3GYG4dAZlIQhasXgtzT9E3Mgwkbsi7ZWGqTp6p1PHB5G0s/aKW1lvlUt3boJetdzTYQhCwI3MLVEvBxzI/GWRTtNurpgbcEA/ZGlJb2iTbp1/VkxW05cwTto6Dt2p/hiSVStOx8DFR+qQlyrr326cj3ECSoZea6W8ln5sdkTCxjJIgwdIJkUryM/WL1mX1SFIaKlbXfeMqFhbWKgYlBq6nxk/fcYneT1pRW6T29izE74cFH0JtvDqz8rsJQXN6iWA2K0Y3dNGPlwWDlNRVIIXw1H8SQjvBT1Clfh9asCzFpDcTwMQQhABJ2C0IGd+MrG1frxeBeCfgKnXZ206k1h/7G9kLDwGLNOIzyjaaQfiFxaru/rFSZ/m9ZNpGq1SIvVVjC/AhJ5MTpHuke57ju5xJJ+V+EIWtF4ITRitPNv1OsSzujWt/RsHvH/glm1lCMVL9Qe0uK3IziIKE/f0bB7x/4I/o2D3j/wAFX8dpvef4M98p+0QUL6zxGCeWI82PLf8AS+SbBBAIg476On2NuH4ehZGmZhHlYweUjS1Cw9cu3UE9wDGqjlJQUIQk4SCEIUkgk7V9YMsV5wO+wtTih8UcgAexrgPMbo+msNVytjMq43KRI8hWHqlT28X4BHVKnt4vwC0/xv8Az/uA8r6yXYumb16GHwJ3d8BVEAAADkEMghjO7ImNPmGgIWfq7zc46YAELWu0QQhCVhJMczMJ8lacOQf0R8NWYrCatUnc14vwCOqVPbxfgFsJqwqKor4AHMXNeSTmR9rS5waOZOwVfrxivXhi9DAF6KtUHcV4vwCEprLzbsG3AGZetNuZ5M2TgS8MbyFh6PypVYoXKxPGge3+dlVkKmm1JozhQQZZ0D+sjyFTcnWqkOd1eL8AkG0xjXnZoHwFsVXeYM7cRZlxOBC7azGueN2gp+xtasIw4QRg+YaFLrvKXO3MiruiNUxGQuEcKB23qd+gTnjcDBRIkkIkm/41biFk3a220EfKvYRha1X6meSyNijfI87Na0kqUW7DrVmWd3N7iVWHNa4EOAIPMFHVKnt4vwC90loq3HZkmSxd2BmR5fSKJ00scbO89wA+6rvVKnt4vwCG1q7SHNgjBHIhoTh1vQ4r/uC8r6z814WV4Iom8mNAX6QhY5JJJMZghCF5JJzqGDg5ax5O2esRV+SKGQkviY4+ZaCv11Sp7eL8AtarWYrQFM4AHMXavqeslFGbgXK8vpkaUKr9Uqe3i/AIQ7rEuILV8DvLKpXgz//Z"
+              />
+            </div>
+          </div>
+          <div class="logo-divider"></div>
+
+          <div class="main-title-container">
+            <div class="main-title-container-left">
+              <span class="main-title">交易驗證碼確認</span>
+            </div>
+            <div class="main-title-container-right">
+
+              <form method="post" action="/acsn2_kernel/2/browser/challenge-request" id="selectLanguageForm">
+                <input type="hidden" name="threeDSSessionData" value=""/>
+                <input type="hidden" name="creq" value="eyJtZXNzYWdlVHlwZSI6IkNSZXEiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiI0NjBhMjY5Yi0zZmM5LTQzOGYtYTJmNi1mODY1NzFlOTE5ZmUiLCJhY3NUcmFuc0lEIjoiZTMwYmFmM2MtZWQ4MC00NmU4LTlhYWEtZjk0YzZjY2RhNmEzIiwiY2hhbGxlbmdlV2luZG93U2l6ZSI6IjAyIn0"/>
+
+                <select id="selectLanguage" name="languageValue">
+                  <option value="zh-TW" selected="selected">中文</select>
+              </form>
+
+            </div>
+          </div>
+
+          <form id="otpReqForm" method="post" action="/acsn2_kernel/2/browser/challenge-otp">
+            <input type="hidden" name="threeDSServerTransID" value="460a269b-3fc9-438f-a2f6-f86571e919fe"/>
+            <input type="hidden" name="threeDSSessionData" value=""/>
+            <input type="hidden" name="firstCReqRequest" value="eyJtZXNzYWdlVHlwZSI6IkNSZXEiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiI0NjBhMjY5Yi0zZmM5LTQzOGYtYTJmNi1mODY1NzFlOTE5ZmUiLCJhY3NUcmFuc0lEIjoiZTMwYmFmM2MtZWQ4MC00NmU4LTlhYWEtZjk0YzZjY2RhNmEzIiwiY2hhbGxlbmdlV2luZG93U2l6ZSI6IjAyIn0"/>
+            <input type="hidden" name="languageValue" value="zh-TW"/>
+            <input type="hidden" name="acsTransID" value="e30baf3c-ed80-46e8-9aaa-f94c6ccda6a3"/>
+            <div class="purchase-info-content text-align-left">
+              <p class="font-16">特約商店：GreenWorld Technologies<br>交易金額：280.00 TWD<br>信用卡號：************9902<br>交易日期：2026/01/03 00:08:12</p>
+              
+              <div class="info-group">
+                <div class="radio font-16">
+                  <label>
+                    <input type="radio" name="authChannel" value="SMS"/>
+                    <span>使用簡訊OTP驗證</span>
+                  </label>
+                </div>
+                <div class="radio font-16">
+                  <label>
+                    <input type="radio" name="authChannel" value="OOB" checked="checked"/>
+                    <span>使用Richart Life APP推播驗證(務必開啟APP通知)</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <button id="btnSubmitForm" class="btn btn-block btn-primary mb-1">確定</button>
+          </form>
+
+          <form id="cancelForm" method="post" action="/acsn2_kernel/2/browser/challenge-cancel">
+            <input type="hidden" name="threeDSServerTransID" value="460a269b-3fc9-438f-a2f6-f86571e919fe"/>
+            <input type="hidden" name="languageValue" value="zh-TW"/>
+            <input type="hidden" name="firstCReqRequest" value="eyJtZXNzYWdlVHlwZSI6IkNSZXEiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiI0NjBhMjY5Yi0zZmM5LTQzOGYtYTJmNi1mODY1NzFlOTE5ZmUiLCJhY3NUcmFuc0lEIjoiZTMwYmFmM2MtZWQ4MC00NmU4LTlhYWEtZjk0YzZjY2RhNmEzIiwiY2hhbGxlbmdlV2luZG93U2l6ZSI6IjAyIn0"/>
+            <input type="hidden" name="acsTransID" value="e30baf3c-ed80-46e8-9aaa-f94c6ccda6a3"/>
+
+            <button class="btn btn-block btn-default mb-1">取消(cancel)</button>
+          </form>
+
+          <p id="alertRemarkBodyMessage" class="font-13 text-align-left color-red">1.	慎防詐騙!! 請先核對「交易金額」及「幣別」是否正確，OTP交易驗證碼資料請勿提供給第三人。<br />2.	請點選「取得簡訊OTP服務密碼」按鍵，台新銀行將於1~2分鐘內以簡訊傳送交易驗證碼。<br />3.	收到簡訊OTP後，請確認簡訊內「交易金額及幣別」正確性。<br />4.	「網頁識別碼」：請點選與簡訊OTP中相同的網頁識別碼(英文字組合) 。<br />5.	若您無法完成交易或是未收到交易驗證碼，請與台新銀行客服中心聯絡，電話(02)2655-3355。</p>
+
+          <input type="hidden" id="webRemarkBodyMessage" name="webRemarkBodyMessage" value="1.	慎防詐騙!! 請先核對「交易金額」及「幣別」是否正確，OTP交易驗證碼資料請勿提供給第三人。&lt;br /&gt;2.	請點選「取得簡訊OTP服務密碼」按鍵，台新銀行將於1~2分鐘內以簡訊傳送交易驗證碼。&lt;br /&gt;3.	收到簡訊OTP後，請確認簡訊內「交易金額及幣別」正確性。&lt;br /&gt;4.	「網頁識別碼」：請點選與簡訊OTP中相同的網頁識別碼(英文字組合) 。&lt;br /&gt;5.	若您無法完成交易或是未收到交易驗證碼，請與台新銀行客服中心聯絡，電話(02)2655-3355。"/>
+          <input type="hidden" id="oobWebRemarkBodyMessage" name="oobWebRemarkBodyMessage" value="1. 慎防詐騙！請務必確認「交易金額」及「幣別」是否正確再進行驗證，信用卡資訊請勿提供給第三人。&lt;br /&gt;2. 選擇「使用Richart Life APP推播驗證」，台新銀行將發送「交易驗證通知」至您的行動裝置。&lt;br /&gt;3. 選擇「使用Richart Life APP推播驗證」需開啟通知，請確認行動裝置內「設定」Richart Life APP已開啟通知。&lt;br /&gt;4. 若您無法完成交易，請與台新銀行客服中心聯絡，電話(02)2655-3355。&lt;br /&gt;"/>
+
+          
+          
+        </div>
+      </div>
+    </div>
+
+    <script crossorigin="anonymous" integrity="sha256-VOvFDAFBjkWaFn+mFwQ5g25ZbJQ7XAbSFOv8YPP0dig=" src="/acsn2_kernel/js/initialPage.js"></script>
+  </body>
+</html>
