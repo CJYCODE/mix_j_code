@@ -1,0 +1,223 @@
+{
+   "checksum": "7c926c9573040f5590793d92c088fa6e",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13321161604374209",
+            "date_last_used": "13383635040732442",
+            "guid": "0cf75bec-c54a-4063-84e7-bd7e73755bb1",
+            "id": "2",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Your stories",
+            "type": "url",
+            "url": "https://medium.com/me/stories/public"
+         }, {
+            "date_added": "13383632386478958",
+            "date_last_used": "0",
+            "guid": "d0fab005-0148-42d7-be37-382370fce92e",
+            "id": "3",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "你的段落文字 - 900 × 900 像素 - Canva",
+            "type": "url",
+            "url": "https://www.canva.com/design/DAGeq4Hq-Mg/0to6W7UqQbzOVZ8S4HZ7nQ/edit"
+         }, {
+            "date_added": "13383634989090056",
+            "date_last_used": "0",
+            "guid": "a177d90b-0eca-4242-a54a-5e8882f5d7ed",
+            "id": "4",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Meta Business Suite",
+            "type": "url",
+            "url": "https://business.facebook.com/latest/content_calendar?business_id=195499293009002&asset_id=113386698282887"
+         }, {
+            "date_added": "13380997993707637",
+            "date_last_used": "13400563944911798",
+            "guid": "885f3ea9-d9fa-4931-bf48-66f992870f46",
+            "id": "5",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "jjg book• Instagram 相片與影片",
+            "type": "url",
+            "url": "https://www.instagram.com/jjg.books/"
+         }, {
+            "date_added": "13380992290824407",
+            "date_last_used": "13396603641572765",
+            "guid": "68efef5a-fe7d-4a40-988a-f8081435d2f5",
+            "id": "6",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Threads",
+            "type": "url",
+            "url": "https://www.threads.net/?xmt=AQGzKRqJOHDQQ4gVOq2vHzZGXJknXwveNdG7fizZGWlzrig"
+         }, {
+            "date_added": "13317569291375133",
+            "date_last_used": "13346900431002279",
+            "guid": "cbc6217f-c408-48ef-a2c9-d99c896b4de8",
+            "id": "7",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "啾啾光說書 | Facebook",
+            "type": "url",
+            "url": "https://www.facebook.com/%E5%95%BE%E5%95%BE%E5%85%89%E8%AA%AA%E6%9B%B8-113386698282887"
+         }, {
+            "date_added": "13317581179620763",
+            "date_last_used": "13412252020784759",
+            "guid": "962d4b87-ad52-4767-ab2e-b28937aed99e",
+            "id": "8",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "(14) jiujiu guang (@jiujiu_guang) / Twitter",
+            "type": "url",
+            "url": "https://twitter.com/jiujiu_guang"
+         }, {
+            "date_added": "13322127544923581",
+            "date_last_used": "13362480406817946",
+            "guid": "d15c053e-c790-4b81-9d99-60b7f882a849",
+            "id": "9",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "上传图片 – remove.bg",
+            "type": "url",
+            "url": "https://www.remove.bg/zh/upload"
+         }, {
+            "date_added": "13317569284057945",
+            "date_last_used": "13320841500493302",
+            "guid": "1dee195c-be12-4efd-9ec8-8a2a213992e2",
+            "id": "10",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "發光吧啾啾光",
+            "type": "url",
+            "url": "https://www.notion.so/381f3079e5744016a424aa9fa739b91a"
+         }, {
+            "date_added": "13339479631531038",
+            "date_last_used": "0",
+            "guid": "73ef5d9e-12dd-4d62-bfee-9865e844a03a",
+            "id": "11",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "繁體中文 文字轉語音軟件 |音獨",
+            "type": "url",
+            "url": "https://ondoku3.com/zh-hant/"
+         }, {
+            "date_added": "13324607196146973",
+            "date_last_used": "0",
+            "guid": "0b019ae5-a3dc-4127-a7d9-3c357606636e",
+            "id": "12",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "繁簡轉換|简繁转换 - 線上工具",
+            "type": "url",
+            "url": "https://youtils.cc/big5gb"
+         }, {
+            "date_added": "13339823559353801",
+            "date_last_used": "13340276735699256",
+            "guid": "9dbb2c42-d417-4c0c-914f-a62a88af6b0d",
+            "id": "13",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "在線免費文字轉語音 - TTSMaker",
+            "type": "url",
+            "url": "https://ttsmaker.com/zh-hk"
+         }, {
+            "date_added": "13339822177351810",
+            "date_last_used": "13340366957415715",
+            "guid": "05fd6d8e-c490-44c7-983d-00add49d179f",
+            "id": "14",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "- Grammarly",
+            "type": "url",
+            "url": "https://app.grammarly.com/ddocs/2188964649"
+         }, {
+            "date_added": "13338515448612953",
+            "date_last_used": "13340294611469097",
+            "guid": "90eacaa9-5498-463a-8688-c5ec8d1d85c6",
+            "id": "15",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Google 搜尋趨勢",
+            "type": "url",
+            "url": "https://trends.google.com.tw/trends/trendingsearches/daily?geo=TW&hl=zh-TW"
+         }, {
+            "date_added": "13332561248586862",
+            "date_last_used": "0",
+            "guid": "e2447806-75be-4fdf-8429-ca9bc37d170f",
+            "id": "16",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Dashboard | Buy Me a Coffee",
+            "type": "url",
+            "url": "https://www.buymeacoffee.com/dashboard"
+         }, {
+            "date_added": "13364970710644725",
+            "date_last_used": "0",
+            "guid": "f09b480f-779f-4f93-9f48-3f45c7d9789f",
+            "id": "17",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Token Unlocks - Your Unlock Schedule & Tokenomics Data",
+            "type": "url",
+            "url": "https://token.unlocks.app/"
+         }, {
+            "date_added": "13397282840639171",
+            "date_last_used": "0",
+            "guid": "825c955b-b87d-4281-b640-0aa492a2a349",
+            "id": "18",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "AI Image Creator - Free Online Text to Image App | Fotor",
+            "type": "url",
+            "url": "https://www.fotor.com/images/create"
+         } ],
+         "date_added": "13391279117996335",
+         "date_last_used": "0",
+         "date_modified": "13397282840639171",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "書籤列",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13391279117996337",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "19",
+         "name": "其他書籤",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13391279117996338",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "20",
+         "name": "行動版書籤",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}

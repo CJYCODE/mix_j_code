@@ -1,4 +1,0 @@
-2026/01/09-23:35:11.784 4568 Reusing MANIFEST C:\chrome-data\debug5\Profile 5\shared_proto_db/MANIFEST-000001
-2026/01/09-23:35:11.784 4568 Recovering log #10
-2026/01/09-23:35:11.785 4568 (ignoring error) C:\chrome-data\debug5\Profile 5\shared_proto_db/000010.log: dropping 120 bytes; Corruption: missing start of fragmented record(2)
-2026/01/09-23:35:11.785 4568 Reusing old log C:\chrome-data\debug5\Profile 5\shared_proto_db/000010.log 
