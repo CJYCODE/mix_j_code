@@ -1,2 +1,3 @@
-2026/01/19-10:47:19.883 e0169 Creating DB /Users/j_dev/Documents/code/clip_win/mix_j_code/bdm_booking_wrap_mac/chrome-data/debug8/Profile 8/Session Storage since it was missing.
-2026/01/19-10:47:19.890 e0169 Reusing MANIFEST /Users/j_dev/Documents/code/clip_win/mix_j_code/bdm_booking_wrap_mac/chrome-data/debug8/Profile 8/Session Storage/MANIFEST-000001
+2026/01/19-10:56:08.185 e5072 Reusing MANIFEST /Users/j_dev/Documents/code/clip_win/mix_j_code/bdm_booking_wrap_mac/chrome-data/debug8/Profile 8/Session Storage/MANIFEST-000001
+2026/01/19-10:56:08.198 e5072 Recovering log #3
+2026/01/19-10:56:08.199 e5072 Reusing old log /Users/j_dev/Documents/code/clip_win/mix_j_code/bdm_booking_wrap_mac/chrome-data/debug8/Profile 8/Session Storage/000003.log 
